@@ -1,6 +1,6 @@
 * Topology Notes
 
-These notes were taken by moi -- Kyle Dituro -- in the Fall semester of 2023 at Tufts University. The course was taught by Sebastian Bozlee at the undergraduate level. The intended textbook for the course is Topology Second Edition by James R. Munkres.
+These notes were taken by Kyle Dituro in the Fall semester of 2023 at Tufts University. The course was taught by Sebastian Bozlee at the undergraduate level. The intended textbook for the course is Topology Second Edition by James R. Munkres.
 
 I would say that I tried my best to keep this neat, but that would be a bold-faced lie. I did the bare minimum of including a .gitignore to deal with the awful byproducts of PdfLaTeX, but that's about it. I probably forgot to spell-check most of these documents, and some of them are liable to have blatant errors in them. 
 
