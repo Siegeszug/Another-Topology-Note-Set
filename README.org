@@ -1,9 +1,9 @@
 * Topology Notes
 
-These notes were taken by moi -- Kyle Dituro -- in the Fall semester of 2023 at Tufts University. The course was taught by Sebastian Bozlee.
+These notes were taken by moi -- Kyle Dituro -- in the Fall semester of 2023 at Tufts University. The course was taught by Sebastian Bozlee at the undergraduate level. The intended textbook for the course is Topology Second Edition by James R. Munkres.
 
-I would say that I tried my best to keep this neat, but that would be a bold-faced lie.
+I would say that I tried my best to keep this neat, but that would be a bold-faced lie. I did the bare minimum of including a .gitignore to deal with the awful byproducts of PdfLaTeX, but that's about it. I probably forgot to spell-check most of these documents, and some of them are liable to have blatant errors in them. 
 
 This repo includes LaTeX files, including my personal header file used to typeset these notes. If you have any questions about this header file, I probably can't answer them even though I wrote the damn thing, but I'll sure give it a try. 
 
-The TeX was done in emacs
+The TeX was done in emacs with some very strange keybinds (if I do say so myself), so good luck trying to replicate live TeXing notes using this header.
