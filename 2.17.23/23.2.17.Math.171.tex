@@ -1,0 +1,121 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+We begin with a reminder of what will be one of the most fundimental definitions for this course.
+
+\begin{df}
+  Let \(X\) be a set. A \textbf{topology on} \(X\) is a set \(\tau\) of subsets 
+of \(X\) such that:
+\begin{enumerate}
+  \item \(\emptyset, X \in \tau\)
+  \item If \(U_i \in \tau\) of each \(i \in I\) then \(\bigcup_{i \in I} U_i \in \tau\)
+  \item If \(U_1, \ldots, U_n \in \tau\), then \(\bigcap_{i = 1}^n U_i \in \tau\).
+  \end{enumerate}
+    A \textbf{topological space} is a pair \((X, \tau)\) where \(X\) is a set and \(\tau\) is a topology on \(X\). Then the elements of \(\tau\) are called the \textbf{open subsets} of \(X\).
+
+\end{df}
+
+And we remember the definition of continuity:
+
+\begin{df}
+  Let \((X, \tau_X), (Y, \tau_Y)\) be topological spaces. A \textbf{continuous function} \(f: (X, \tau_X) \to (Y, \tau_Y)\) is a function \(f: X \to Y\) such that whenever \(U \in \tau_Y\), we have that \(f\1(U) \in \tau_X\).
+\end{df}
+
+And we'll proceed with a number of examples to guide our intuition of open-ness in a topological sense and continuity.
+
+\begin{exa}
+  Let \(X = \mathbb{R}\) be given. We know that the usual notion of open sets defines a topology on \(X\):
+  \begin{align*}
+    \tau_1 &= \opn \text{open subsets of } \R \cls
+  \end{align*}
+
+  However, this is not the only topology that we can endow the real numbers with. In fact, I claim that: \[\tau_2 = \tau_1 \cup \opn \opn 0 \cls \cup U\ \middle\vert U \in \tau_1 \cls\]
+  Let's check:
+  \begin{itemize}
+  \item \(\emptyset, \R \in \tau_2\)
+  \item \(\opn U_i \cls_{i \in I}\)with \(U_i \in \tau_1\), \(\{\{0\} \cup U_j\}_{j \in J}\) where \(U)j \in \tau_1\). The union of these is either \(\bigcup_{i \in I}U_i\) if \(J\) is empty or \(\{0\} \cup \left( \bigcup_{i \in I \cup J} U_i \right)\)
+  \item \(U_1, \ldots, U_n, \{0\} \cup U_{n+1}, \ldots, \{0\} \cup U_{n + m}\), the intersection of these tings is either \(\{0\} \cup \left( \bigcap U_i\right)\)if \(n = 0\) or \(\bigcap U_i\) if \(n \neq 0\).
+  \end{itemize}
+      
+\end{exa}
+
+\begin{exa}
+  Consider the function
+  \(f(x) = \begin{cases} 1 & x = 0 \\ 0 & x \neq 0 \end{cases}\)
+  Under the topology \(\tau_2\), this function is actually continuous.
+\end{exa}
+
+\begin{fact}
+  The continuous funcions \(g: (\R, \tau_2) \to (\R, \tau_1)\)  are the funtions continuous at all \(x \in \R - \{0\}\) in the analysis sense of continuity.
+  The continuous functions \(f:(\R, \tau_1) \to (\R, \tau_2)\) are the continuous function with \(g(\R) \subseteq (-\infty, 0), (0, \infty),\) or \(\{0\}\).
+\end{fact}
+
+\begin{idea}
+  Let \(f: X \to Y\), the more open subsets \(Y\) has, the harder it is for \(f\) to be continuous, and likewise the more open susbsets \(X\) has, the easier it s.
+\end{idea}
+
+
+\begin{df}
+  Let \(X\) be a set, \(\tau_1, \tau_2\) two topologies on \(X\). We say that \(\tau_1\) is coarser than \(\tau_2\) and that \(\tau_2\) is finer than \(\tau_1\) if \(\tau_1 \subseteq \tau_2\).
+\end{df}
+
+\begin{exa}
+  Notice that the discrete topology is always the finest topology on a set \(X\), and that the indiscrete topology is the finest.
+\end{exa}
+
+\begin{prop}
+  Let \(f: X \to Y\) be a function between topological spaces.
+  \begin{enumerate}
+  \item If \(X\) has the discrete topology then \(f\) is continuous.
+  \item If \(Y\) has the indiscrete topology then \(f\) is continuous.
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+  \item let \(f: X \to Y\) be any function. Let \(U \subseteq Y\) be an open subset. This is obvious because every subset of \(X\) is open, so of course \(f\1(U)\) is open.
+  \item Let \(f:X \to Y\) be any function. Let \(U \subseteq Y\) be an open set. Now since \(Y\) has the indiscrete topology, we need only check \(f\1(Y)\) and \(f\1(\emptyset)\) but \(f\1(Y) = X\) and \(f\1(\emptyset) = \emptyset\).
+  \end{enumerate}
+  Thus, our function is continuous in either case.
+\end{proof}
+
+\begin{prop}
+  \(\mathrm{id}_X: (X, \tau_2)) \to (X, \tau_1)\)is continuous iff \(\tau_2\) is finer than \(\tau_1\).
+  In particular \(\mathrm{id}_X: (X, \tau) \to (X, \tau)\) is continuous.
+\end{prop}
+\begin{proof}
+  \(\mathrm{id}_X:(X, \tau_2) \to (X, \tau_1)\) is continuous iff \(\forall U \in \tau_1\), \(\mathrm{id}\1_X(U) \in \tau_2\) iff \(\forall U \in \tau_1\), have \(U \in tau_2\) iff \(\tau_1 \subseteq \tau_2\) which is the definition of \(\tau_2\) is finer than \(\tau_1\).
+\end{proof}
+
+\begin{lm}
+  Let \(f: X \to Y\), \(g: Y \to Z\) be functions, \(W \subseteq Z\). Then \((g \circ f)\1(W) = f\1\left(g\1\left(W\right)\right)\).
+\end{lm}
+\begin{proof}
+  \begin{align*}
+    f\1(g\1(W)) &= \opn x \in X \middle\vert f(x) \in g\1(W) \cls \\
+                &= \opn x \in X \middle\vert f(x) \in \opn y \in Y \middle \vert g(y) \in W \cls \cls \\
+                &= \opn x \in X \middle\vert g(f(x)) \in W \cls \\
+                &= (g \circ f)\1 (W)
+  \end{align*}
+\end{proof}
+
+\begin{prop}
+  Let \(f: X \to Y\), \(g: Y \to Z\) be continuous. Then \((g \circ f): X \to Z\) is as well.
+\end{prop}
+\begin{proof}
+  Let \(W \subseteq Z\) be open. Then
+  \begin{align*}
+    (g \circ f)\1(W) &= f\1(g\1(W))
+  \end{align*}
+  Notice here that we are taking the pre-image of an open set by continuous functions twice. Thus, \(g \circ f\) is continuous.
+\end{proof}
+And so it was that Kyle never wrote an \(\epsilon\)-\(\delta\) proof again. And we have officielly moved out of the category of Sets, and have moved into the category of Topologies.
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

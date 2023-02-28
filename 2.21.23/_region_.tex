@@ -1,0 +1,87 @@
+\message{ !name(2.21.23.math.171.tex)}\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+
+\message{ !name(2.21.23.math.171.tex) !offset(-3) }
+
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+
+We begin with a definition:
+
+\begin{df}
+  Let \(X\) be a topological space. We say that \(Z \subseteq X\) is \textbf{closed} if \(Z^c \subseteq X\) is open in \(X\).
+\end{df}
+
+\begin{prop}
+  Suppose that \(X\) is a topological space. Then:
+  \begin{enumerate}
+  \item \(X, \emptyset\) are closed subsets of \(X\).
+  \item If \(Z_i \subset X\) for each \(i \in I\) is a closed subset of \(X\), then so is \(\bigcap_{i \in I}Z_i \subseteq X\) is closed is \(X\) as well.
+  \item If \(Z_1, \ldots, Z_n\) are closed subsets of \(X\), then their union \(\bigcup_{i = 1}^nZ_i \subseteq X\) is as well.
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  We will show that this follows directly from the three tenants of what it means to be a topology.
+  \begin{enumerate}
+  \item Notice that \(\emptyset = X^c\) and likewise \(X = \emptyset^c\), so \(X\) and \(\emptyset\) are trivially clopen.
+  \item For this and the following part, we will leverage De Morgan's laws. Let \(Z_i \subseteq X\) be a closed subset for each \(i \in I\) then
+    \begin{align*}
+      \bigcap_{i\in I}Z_i &= \left(\bigcap_{i \in I}Z_i^c\right)^c \\
+                          &= \left(\bigcup_{i \in I} Z_{i}^c \right)^c
+    \end{align*}
+    But we know that \(Z_i^c\) is open, so this union is an open set, so its complement is closed.
+  \item Let \(Z_i\), \(i = 1, \ldots, n\) be a closed collection of subsets of \(X\). Then again:
+
+    \begin{align*}
+      \bigcup_{i=1}^n Z_{i} &= \left(\bigcup_{i=1}^nZ_i^c\right)^c \\
+                            &=\left(\bigcap_{i=1}^nZ_i^c \right)^c
+    \end{align*}
+
+    So we have the result again in the same way.
+  \end{enumerate}
+\end{proof}
+\begin{idea}
+  Any statement made in terms of open sets can be rephrased in terms of an equivalent statement about closed sets.
+\end{idea}
+\begin{fact}
+  A topological space can be defined by specifying a collection of closed sets and showing that they satisft the equivalent closed set definition of a topology.
+\end{fact}
+\begin{prop}
+  If \(X,Y\) are topological spaces, then a function \(f: X \to Y\) s continuous iff whenever \(Z \subseteq Y\) is closed in \(Y\), \(f\1(Z)\) is a closed subset of \(X\).
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+  \item [(\(\Rightarrow\))] Assume \(f: X \to Y\) is continuous. Let \(Z \subseteq Y\)  be a closed subset. Then \(f\1(Z^c)^c\) is also closed. But \(Z^c\) is open, so \(f\1(Z^c)\) is open, and thus \(f\1(Z^c)^c\) is closed.
+  \item [(\(\Leftarrow\))] Assume that pre-images of closed subsets are closed. So let \(U \subseteq Y\) be an open subset. Then \(f\1(U) = f\1(U^c)^c\), and the same thing happens again. \(f\1(U^c)\) is the pre-image of a closed set, which is closed, and so its complement is open. And the result falls out.
+  \end{enumerate}
+\end{proof}
+
+\begin{df}
+  A polynomial in \(n\) variable is a function \(f: \R^n \to \R\).
+  \begin{align*}
+    f(x_1 \ldots x_n) = \sum c_Ix^I \\
+  \end{align*}
+
+  The \textbf{Zero Locus} of a set of polynomials \(\{f_i\}_{i\in I}\)is the subset
+  \begin{align*}
+    Z(\{f_i\}) = \opn (x_1, \ldots, x_n) \in \R^n \middle\vert f_i(x_1 \ldots x_n) = 0 \cls.
+  \end{align*}
+\end{df}
+
+For example: \(f(x, y) = y - x^2\):
+\(Z(f)\) should be a parabola.
+
+\begin{df}
+  The zero locus of a set of polynomials is called an 
+\end{df}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\message{ !name(2.21.23.math.171.tex) !offset(-87) }

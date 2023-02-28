@@ -1,0 +1,91 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+
+Recall the definition of the subspace topology:
+
+\begin{df}
+  If \((X, \tau_X)\) is a topological space, and \(Y \subseteq X\), then the \textbf{subspace topology on }\(Y\) is the topology \[\tau_{\text{sub}} = \opn U \cap Y \middle\vert U \in \tau_X \cls\].
+\end{df}
+
+We now give a proposition which somehow justifies that this is not just any topology, but is somehow a good choice.
+
+\begin{prop}
+  With notation as above:
+  \begin{enumerate}
+  \item \(i: (Y, \tau_{\mathrm{sub}}) \to (X, \tau_X)\) taking \(y \mapsto y\) (the inclusion function) is continuous.
+  \item \(\tau_{\mathrm{sub}}\) is the coarsest topology on \(Y\) such that \(i\) is continuous.
+  \item If \(f: (X, \tau_X) \to (Z, \tau_Z)\) \(x \mapsto f(x)\) is continuous, then \(f\vert_y : (Y, \tau_\mathrm{sub}) \to (Z, \tau_Z)\) \(y \mapsto f(y)\) is alco continuous.
+  \item If \((W, \tau_W)\) is a topological space and \(g: W \to Y\) is a function, then
+    \begin{align*}
+      g:(W, \tau_W) \to (Y, \tau_{\mathrm{sub}}) \text{ is continuous } &\Leftrightarrow& i \circ g : (W , \tau_W) \to (X, \tau_X) \text{ is continuous} \\
+      w \mapsto g(w) & & w \mapsto g(w)
+    \end{align*}
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+  \item This part is mosly trivial (try writing out what \(i\1\) of an open set must be! The proof follows directly).
+  \item Let \(\tau_2\) be a topology on \(Y\) such that \(i: (Y, \tau_2) \to (X, \tau_X)\) is continuous.
+    Since \(i\) is continuous, for all \(U \subseteq X\) an open subset of \(X\), we have that \(i\1(U): U \cap Y\) is open in \(Y\) with topology \(\tau_2\). This shows that for any \(U \subseteq X\) an open subset of \(X\), \(U \cap Y \in \tau_2\) i.e. an arbitrary element of \(\tau_\mathrm{sub}\) also belongs to \(\tau_2\). So \(\tau_2 \supseteq \tau_{\mathrm{sub}}\), and, by definition \(\tau_{\mathrm{sub}}\) is coarser than \(\tau_2\).
+  \item \[(Y, \tau_{\mathrm{sub}}) \xrightarrow[\mathrm{cont}]{i} (X, \tau_X) \xrightarrow[\mathrm{cont}]{f} (Z, \tau_Z)\] is a composition of continuous functions which is continuous, so \(f\vert_y = f \circ i\) is continuous.
+  \item
+    \begin{itemize}
+    \item [\((\Rightarrow)\)] if \(g: (W, \tau_W) \to (Y, \tau_{\mathrm{sub}})\) is continuous, then again \(i \circ g\) is a ocmposite of continuous functions, so \(i \circ g\) is continuous.
+    \item [\((\Leftarrow)\)] Assume \(i \circ g\) is continuous. Let some \(U \subseteq Y\) is open. By definition \(U = V \cap Y\) for some \(V \subseteq X\) an open subset of \(X\). So we know \((i \circ g)\1 (V)\) is open in \(W\).
+      \begin{align*}
+        (i \circ g)\1(V) &= g\1(i\1(V)) \\
+                         &= g\1(V \cap Y) \\
+                         &= g\1(U).
+      \end{align*}
+      So \(g\1(U)\) is open, and thus \(g\) is continuous.
+    \end{itemize}
+  \end{enumerate}
+\end{proof}
+
+Notice that if \(U\) is open in \(Y\), we may not have that \(U\) is open in \(X\). \( \opn 0, 1 \cls \subseteq \R\), then \(\opn 0, 1 \cls\) is an open subset of \(Y\), but not an open subset of \(X\).
+
+\begin{prop}
+  If \(Y\) is an open subset of a topological space \(X\) and \(U \subseteq Y\), then \(U \subseteq Y\) is and open subset of \(Y\) in the subspace topology iff \(U\) is open in \(X\).
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item [\((\Rightarrow)\)] Let \(U\) be an open subset of \(Y\) in the subspace topology. Then there exists some open set \(V \subseteq X\) such that \(V \cap Y = U\). But we know that both \(V\) and \(Y\) are open in \(X\), their intersection must also be open in \(X\).
+  \item [\((\Leftarrow)\)] Let \(U \subseteq Y\), and we know that \(U\) is open in \(X\). But since \(U \subseteq Y\), \(U = U \cap Y\), but then since \(U\) is open in \(X\) by assumption, \(U\) is open in \(Y\).
+  \end{enumerate}
+\end{proof}
+
+Remember that in the early problem, we (should have) realized that \[\opn (a, b)\ \middle\vert\ a < b\cls \cup \opn \emptyset, \R \cls\] is not a topology.
+\begin{exr}
+  Why?
+\end{exr}
+
+Notice that if we allow also for unions of these open intervals, we realize that we get the usual topology on \(\R\), which better be a topology (otherwise our definition would be quite bad).
+
+\begin{df}
+  let \(X\) be a set. We say that a collection \(\mathcal{B}\) of subsets of \(X\) is a \textbf{basis} for a topology on \(X\) if:
+  \begin{enumerate}
+  \item For each point \(x\in X\), there is a \textbf{basis element} (or \textbf{basic open subset}) \(B \in \mathcal{B}\) such that \(x \in B\)
+  \item For each pair of basis elements \(B_1, B_2 \in \mathcal{B}\) and \(x \in B_1 \cap B_2\) there exists a basis element \(B_3 \in \mathcal{B}\) such that \(x \in B_3 \subseteq B_1 \cap B_2\).
+  \end{enumerate}
+
+  The \textbf{topology} \(\tau\) \textbf{generated by the basis} \(\mathcal{B}\) is the topology on \(X\) where:
+  \begin{enumerate}
+  \item a subset \(U \subseteq X\) is said to be open if for each \(x \in U\) there is a basis element \(B \in \mathcal{B}\) such that \(x \in B\) and \(B \subseteq U\).
+  \end{enumerate}
+\end{df}
+
+\begin{exa}
+  In the usual topology on \(\R^n\), the open balls \(B(\vec{x}, \epsilon)\) form a basis for the usual topology.
+\end{exa}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

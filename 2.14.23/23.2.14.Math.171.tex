@@ -1,0 +1,122 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+
+During the example last week, we found that it can be useful to consider the preimage of a function when looking at continuous functions. This leads us into the following major theorem.
+
+\begin{thm}
+  Let \(f: \R^n \to \R^m\). Then \(f\) is continuous iff for each open subset \(U \subseteq \R^m\) the subset \(f\1(U)\subseteq \R^n\) is open.
+\end{thm}
+\begin{proof}
+  \begin{enumerate}
+  \item [(\(\Rightarrow\))] Suppose \(f: \R^n \to \R^m\) is continuous. Let \(U \subseteq \R^m\) be an open set. Let \(\vec{x} \in f\1(U)\). Since \(U\) is open, \(f(\vec{x}) \in U\), there \(\exists \epsilon > 0\) such that \(B(f(\vec{x}), \epsilon) \subseteq U\).
+
+    Since \(f\) is continuous, \(\exists \delta > 0\) such that \(\forall \vec{y} \in \R^n\), with \(|\vec{x} - \vec{y}| < \delta\), \(|f(\vec{x}) - f(\vec{y})| < \epsilon\). In other words, for all \(\vec{y} \in B(\vec{x}, \delta) \subseteq f\1(U)\) therefore \(f\1(U)\) is open.
+  \item [(\(\Leftarrow\))] Assume that \(f: \R^n \to \R^m\) has the property that \(U \subseteq \R^m\) is open \(\Rightarrow f\1(U) \subseteq \R^n\). Now let \(\vec{x} \in \R^n\), \(\epsilon > 0\).
+
+    Now \(U = B(f(\vec{x}), \epsilon) \subseteq \R^m\) is an open subset, so \(f\1(U) \subseteq \R^n)\) is open. So since \(f\1(U)\) is open, and since \(\vec{x} \in f\1(U)\), so by the definition of openness, there exists a real number \(\delta > 0\) such that \(B(\vec{x}, \delta) \subseteq f\1(U)\). In other words, for all \(\vec{y} \in \R^n\) with \(|\vec{x} - \vec{y}| < \delta\), \(f(\vec{y}) \in U\).
+
+    Therefore \(\forall \vec{y} \in \R^n\) with \(|\vec{x} - \vec{y}| < \delta\), \(|f(\vec{x}) - f(\vec{y})| < \epsilon\). Therefore \(f\) is continuous.
+  \end{enumerate}
+\end{proof}
+
+We of course also know that \(f\1\) preserves all the standard set-theoretic operations.
+
+\begin{enumerate}
+\item \(f\1(\bigcup U_i) = \bigcup f\1(U_i)\)
+\item \(f\1(\bigcap U_i) = \bigcap f\1(U_1)\)
+\item \(f\1(U^c) = (f\1(U))^c\)
+\end{enumerate}
+
+\begin{prop}
+  \begin{enumerate}
+  \item \(\emptyset, \R^n \subseteq \R^n\) are open in \(\R^n\)
+  \item If \({U}_{i\in I}\) is a collection of open subsets of \(\R^n\), then their union is also open.
+  \item If \(U_1,\ldots, U_n\) are open subsets of \(\R^n\) then \(\cap_{i=1}^nU_i\)is also an open subset of \(\R^n\).
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+  \item The empty set is open vacuously.
+    \(\forall \vec{x} \in \R^n\), \(B(\vec{x}, 1) \subseteq \R^n\). 
+  \item Unions come somewhat naturally. Namely let \(\vec{x} \in \cup_{i \in I}U_i\), then there is an index \(j \in I\) such that \(\vec{x} \in U_j\). Then since \(U_j\) is open, there is some \(\epsilon > 0\) such that \(B(\vec{x}, \epsilon) \subseteq U_j \subseteq \cup_{i \in I} U_i\). Therefore \(\cup_{i \in I} U_i\) is open.
+  \item Intersections are a little bit more of a trick. Namely suppose that \(x \in \cap_{i = 1}^n U_i\). Then \(x \in U_i\)for each \(i\), so there exists a positive real number \(\epsilon_i > 0\)  for each \(i = 1, \ldots, n\) such that \(B(\vec{x}, \epsilon_i) \subseteq U_i\) for each \(i = 1, \ldots, n\). Let \(\epsilon = \min\opn \epsilon_1, \ldots, \epsilon_n \cls\). Then \(B(\vec{x}, \epsilon) \subseteq B(\vec{x}, \epsilon_i) \subseteq U_i\) for all \(i\), so \(B(\vec{x}, \epsilon) \subseteq \cap_{i = 1}^n U_i\).
+  \end{enumerate}
+\end{proof}
+It aught to be suspicious that we can only do finite intersections... why is that?
+\begin{exa}
+  Set \(U_n = B(\vec{x}, \frac{1}{n})\) for each \(n \in \Z_{>0}\).
+  Then \(\cap_{n = 1}^{\infty} U_n = \opn \vec{0} \cls\), which is not open.
+  \begin{figure}[h]
+    \centering
+    
+    \caption[Concentric Circles]{We really can only do finite intersections.}
+    \label{fig:FinInt}
+  \end{figure}
+\end{exa}
+
+\begin{prop}
+  Let \(Z \subseteq \R^n\) then \(Z\) is a closed subset of \(\R^n\) iff \(Z^c\) is an open subset of \(\R^n\).
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+  \item [(\(\Rightarrow\))]. Suppose that \(Z\) is closed. Then let \(\vec{x} \in Z^c\). Then \(\vec{x}\) is not a limit point of \(Z\) so \(\exists \epsilon > 0\) such that \(B(\vec{x}, \epsilon) \cap Z) = \emptyset.\) Then \(B(\vec{x}, \epsilon) \subseteq Z^c\) so \(Z^c\) is open.
+  \item [(\(\Leftarrow\))] Suppose that \(Z^c\)  is open. Then let \(\vec{x} \in \R^n\) be a limit point of \(Z\). Then for all \(\epsilon > 0\), \(B(\vec{x}, \epsilon) \cap Z \neq \emptyset\). So \(\forall \epsilon > 0\), \(B(\vec{x}, \epsilon) \not\subseteq Z^c\). This implies that \(\vec{x} \not\in Z^c\) since \(Z^c\) is open. Thus \(\vec{x} \in Z\), so \(Z\) is closed.
+  \end{enumerate}
+\end{proof}
+% ================================
+\begin{df}
+  Let \(X\) be a set. A \textbf{topology on} \(X\) is a set \(\tau\) of subsets 
+of \(X\) such that:
+\begin{enumerate}
+  \item \(\emptyset, X \in \tau\)
+  \item If \(U_i \in \tau\) of each \(i \in I\) then \(\cup_{i \in I} U_i \in \tau\)
+  \item If \(U_1, \ldots, U_n \in \tau\), then \(\cap_{i = 1}^n U_i \in \tau\).
+  \end{enumerate}
+    A \textbf{topological space} is a pair \((X, \tau)\) where \(X\) is a set and \(\tau\) is a topology on \(X\)., Then the elements of \(\tau\) are called the \textbf{open subsets} of \(X\).
+
+\end{df}
+%=========================
+\begin{exa}
+  \(\R^n\) with the usual definition of open sets is a topological space.
+\end{exa}
+
+\begin{exa}
+  We can define a topological space with only finitely many points. For example
+  \begin{align*}
+    X &= \opn 1, 2 \cls \\
+    \tau &= \opn \emptyset, \opn 1, 2 \cls \cls \quad &\text{(indiscreet topology)}\\
+    \tau_1 &= \opn \emptyset, \opn 1 \cls, \opn 1, 2 \cls \cls \quad &\text{(Sierpinski space)} \\
+    \tau_2 &= \mathcal{P}(X) \quad &\text{(The discrete topology)}
+  \end{align*}
+\end{exa}
+
+\begin{df}
+  If \((X, \tau_X), (Y, \tau_Y)\) are topological spaces, then a function \(f: X \to Y\) is said to be \textbf{continuous} if \(f\1(U)\) is open in \(Y\) whenever \(U\) is open in \(X\).
+\end{df}
+
+\begin{exa}
+  What are the continuous functions from  \(S\) (the Sierpinski space) to \(S\).
+
+  There are four functions:
+  \begin{center}
+    \begin{tabular}[h]{c|cc|c}
+      \(x\) & 1 & 2 & cont?\\
+      \hline
+      \(f_1(x)\) & 1 & 2 & Yes\\
+      \(f_2(x)\) & 1 & 1 & Yes\\
+      \(f_3(x)\) & 2 & 1 & \(f_3\1({1}) = {2}\)\\
+      \(f_4(x)\) & 2 & 2 & Yes
+    \end{tabular}
+  \end{center}
+\end{exa}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

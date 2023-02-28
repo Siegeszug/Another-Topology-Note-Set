@@ -1,0 +1,4 @@
+* Topology Notes
+
+These notes were taken by moi -- Kyle Dituro -- in the Fall semester of 2023 at Tufts University. The course was taught by Sebastian Bozlee.
+
