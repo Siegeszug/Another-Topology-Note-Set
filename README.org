@@ -2,3 +2,8 @@
 
 These notes were taken by moi -- Kyle Dituro -- in the Fall semester of 2023 at Tufts University. The course was taught by Sebastian Bozlee.
 
+I would say that I tried my best to keep this neat, but that would be a bold-faced lie.
+
+This repo includes LaTeX files, including my personal header file used to typeset these notes. If you have any questions about this header file, I probably can't answer them even though I wrote the damn thing, but I'll sure give it a try. 
+
+The TeX was done in emacs
