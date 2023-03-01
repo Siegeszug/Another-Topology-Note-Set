@@ -1,0 +1,154 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+
+Some review:
+
+\begin{df}
+  Let \(\opn X_i \cls_{i \in I}\) be a collection of sets indexed by \(I\). A set \(P\) together with functions \(\pi_i: P \to X_i\) for each \(i \in I\) is said to have the \textbf{universal property of the product} if, for any set \(Z\) and functions \(f_i: Z \to X_i\) for each \(i \in I\). Then there exists a unique function \(f: Z \to P\) such that
+  \begin{center}
+    \begin{tikzcd}
+      Z \arrow[d, "f"] \arrow[dr, "f_i"] & \\
+      P \arrow[r, "\pi_i"] & X_i
+    \end{tikzcd}
+  \end{center}
+\end{df}
+
+\begin{exa}
+  A standard sort of product: Take \(X_1 = \R, X_2 = \R, P = \R^2\), and \(\pi_1: P \to X_1\), \((x, y) \mapsto x\), and \(\pi_2: P \to X_2\) taking \((x, y) \mapsto y\). then
+
+  \begin{center}
+    \begin{tikzcd}
+      & Z \arrow[dotted, d, "\exists!f"] \arrow[dr, "f_2"] \arrow[dl, "f_1"] & \\
+      X_1 & P \arrow[r,"\pi_2"] \arrow[l, "\pi_1"] & X_2 
+    \end{tikzcd}
+  \end{center}
+  And in fact we can see that such an \(f\) does exist, as \(z \mapsto (f_1(z), f_2(z))\).
+\end{exa}
+
+\begin{exa}
+  Here's a bit of a weirder one.
+  \(X_1 = \R\), \(X_2 = \R\), \(P\prime = \R^2\), and the functions \(\pi_1\prime: P\prime \to X\) a projection on the first coordinate, and \(\pi_2\prime: P\prime \to X_2\) takes \((x, y) \mapsto x + y\).
+
+  \begin{center}
+    \begin{tikzcd}
+      & Z \arrow[dotted, d, "\exists!f"] \arrow[dr, "f_2"] \arrow[dl, "f_1"] & \\
+      X_1 & P\prime \arrow[r,"\pi_2\prime"] \arrow[l, "\pi_1\prime"] & X_2 
+    \end{tikzcd}
+  \end{center}
+  Notice that to get the \(f\) that we desire, we require that \(f(z) = (f_1(z), f_2(z) - f_1(z))\)
+\end{exa}
+
+\begin{thm}
+  If \((P, \pi_i)\) has the universal property of the product and \((P\prime, \pi_i\prime)\) has universal property of the product, then there exists a unique bijuection \(f: P \to P\prime\) such that \(\pi_i = \pi_i\prime\) for all \(i \in I\)
+
+  \begin{center}
+    \begin{tikzcd}
+      P \arrow[d, "f"] \arrow[dr, "\pi_i"] & \\
+      P\prime \arrow[r, "\pi_i\prime"] & X_i
+    \end{tikzcd}
+  \end{center}
+\end{thm}
+
+This theorem was proved in calss, so we omit the proof here.
+
+\begin{df}
+  Let \(X\) be a set, \(\sim\) be an equivalence relation on \(X\). A function \(f: X \to Y\) is said to \textbf{respect the equvalence relation} if \(x_1 \sim x_2 \Rightarrow f(x_1) = f(x_2)\)  for \(x_1, x_2 \in X\). A set \(\overline{X}\)together with a function \(\pi: X \to \overline{X}\) is said to have the universal property of quotients if:
+  \begin{enumerate}
+  \item \(\pi: X \to \overline{X}\) resepects the equivalence relation.
+  \item For any function \(f: X \to Y\) such that \(f\) respects the equivalence relation, \(\exists! \overline{f}:\overline{X} \to Y\) such that
+
+    \begin{center}
+      \begin{tikzcd}
+        X \arrow[r, "f"] \arrow[d, "\pi"] & Y \\
+        \overline{X} \arrow[ur, "\overline{f}"] &
+      \end{tikzcd}
+    \end{center}
+  \end{enumerate}
+\end{df}
+
+\begin{exa}
+  in general, \(\pi: X \to X/\sim\) taking \(x \mapsto [x]\) has the universal property.
+\end{exa}
+
+\begin{exa}
+  \(X = \Z\), \(a \sim b \Leftrightarrow a-b \equiv 0 \mod{6}\). Then \(X/\sim\) is called the integers modulo 6, written \(\Z/6\) (or more commonly \(\Z/6\Z\)).
+
+  Let's define ``multiplying by 2''.
+
+  \begin{center}
+    \begin{tikzcd}
+      \Z \arrow[r, "\times 2"] \arrow[d, "\pi"] & \Z/6 \\
+      \Z/6 \arrow[dotted, ur] &
+    \end{tikzcd}
+  \end{center}
+
+  well notice that ehat we really need here is
+  \begin{center}
+    \begin{tikzcd}
+      a \arrow[mapsto, d] \arrow[mapsto, r] & \left[2a\right] \\
+      \left[a\right] \arrow[mapsto, ur]
+    \end{tikzcd}
+  \end{center}
+
+  So the thing that we really want is \(\Z \to \Z/6\) that takes \(a \mapsto [2a]\). Does this respect the equivalance relation?
+
+  If \(a \sim b\), is it true that \([2a] = [2b]\)?
+
+  \begin{align*}
+    a \sim b &\Rightarrow a-b \equiv 0 \mod{6} \\
+             &\Rightarrow a - b = 6n\ (n \in \Z) \\
+             &\Rightarrow 2a -2b = 6(2n) \\
+             &\Rightarrow 2a \sim 2b \\
+             &\Rightarrow [2a] = [2b].
+  \end{align*}
+  So we have what we want.
+  
+\end{exa}
+
+
+\begin{df}
+  Let \(Z \subseteq \R^n\). A point \(\vec{x} \in \R6n\) is a \textbf{limit point of \(Z\)} if for all \(\epsilon > 0\), \[(B(\vec{x}, \epsilon) - \opn \vec{x} \cls) \cap Z \neq \emptyset.\]
+
+  A point \(\vec{x} \in \R^n\) is said to be an \textbf{adherent point of \(Z\)} if for all \(\epsilon > 0\), \[B(\vec{x}, \epsilon) \cap Z \neq \emptyset.\] Equivalently, \(\vec{x}\) is adherent if \(\vec{x}\) is a limit point or \(\vec{x} \in Z\).
+\end{df}
+
+
+\begin{exa}
+  Let
+  \begin{align*}
+    &f: \R \to \R \\
+    &x \mapsto
+    \begin{cases}
+      0 \quad x < 0 \\
+      20 \quad x \geq 0
+    \end{cases}.
+  \end{align*}
+
+  Obviously, this should not be continuous. Recall that the definition of continuity. Namely that \(\forall \epsilon > 0,\ \forall x\ \exists \delta > 0\ \forall y | x - y | < \delta \Rightarrow |f(x) - f(y)| < \epsilon\). Furthermore, non-continuity entails that \(\exists > 0\ \exists x\ \forall \delta > 0\ \exists y |x - y| < \delta\) and \(|f(x) - f(y)| \geq \epsilon\).
+
+  So let \(x = 0, \epsilon = 0.\) now let \(\delta > 0\). Let \(y = \frac{-\delta}{2}\). Then \(|x - y| = \frac{\delta}{2} < \delta\), but \(|f(x) - f(y)| = |20 -0| = 20 > 10 = \epsilon\)
+\end{exa}
+
+Now let's take \(\begin{matrix} g: \R \to \R \\  x \mapsto 3x\end{matrix}
+\). So we can get \(\forall \epsilon > 0\ \forall x > 0,\ \exists \delta > 0,\ \forall y |x - y| < \delta \Rightarrow |g(x) - g(y)| < \epsilon\).
+Now let \(\epsilon > 0\), and \(x \in \R\). Take \(\delta = \frac{\epsilon}{3}\). Then for all \(y \in \R\) with \(|x -y| < \frac{\epsilon}{3}\),
+
+\begin{align*}
+  |g(x) - g(y)| &= |3x - 3y| \\
+                &= 3|x - y| \\
+                &< 3\left(\frac{\epsilon}{3}\right) \\
+                &= \epsilon.
+\end{align*}
+
+So \(g\) is continuous.
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
