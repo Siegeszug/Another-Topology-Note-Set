@@ -38,7 +38,7 @@ Herein we will outline some review content for the exam.
   \begin{center}
     \begin{tikzcd}
       & Z \arrow[dotted, d, "\exists!f"] \arrow[dr, "f_2"] \arrow[dl, "f_1"] & \\
-      X_1 & P\prime \arrow[r,"\pi_2\prime"] \arrow[l, "\pi_1\prime"] & X_2 
+      X_1 & P\prime \arrow[l, "\pi_1\prime"] & X_2 \arrow[leftarrow, l,"\pi_2\prime"] 
     \end{tikzcd}
   \end{center}
   Notice that to get the \(f\) that we desire, we require that \(f(z) = (f_1(z), f_2(z) - f_1(z))\)
@@ -50,7 +50,7 @@ Herein we will outline some review content for the exam.
   \begin{center}
     \begin{tikzcd}
       P \arrow[d, "f"] \arrow[dr, "\pi_i"] & \\
-      P\prime \arrow[r, "\pi_i\prime"] & X_i
+      P\prime & X_i \arrow[leftarrow, l, "\pi_i\prime"]
     \end{tikzcd}
   \end{center}
 \end{thm}
@@ -65,8 +65,8 @@ This theorem was proved in class, so we omit the proof here.
 
     \begin{center}
       \begin{tikzcd}
-        X \arrow[r, "f"] \arrow[d, "\pi"] & Y \\
-        \overline{X} \arrow[ur, "\overline{f}"] &
+        X \arrow[r, "f"] \arrow[d, "\pi"] & Y \arrow[leftarrow, dl, "\overline{f}"]\\
+        \overline{X} &
       \end{tikzcd}
     \end{center}
   \end{enumerate}
@@ -130,13 +130,13 @@ This theorem was proved in class, so we omit the proof here.
     \end{cases}.
   \end{align*}
 
-  Obviously, this should not be continuous. Recall that the definition of continuity. Namely that \(\forall \epsilon > 0,\ \forall x\ \exists \delta > 0\ \forall y | x - y | < \delta \Rightarrow |f(x) - f(y)| < \epsilon\). Furthermore, non-continuity entails that \(\exists > 0\ \exists x\ \forall \delta > 0\ \exists y |x - y| < \delta\) and \(|f(x) - f(y)| \geq \epsilon\).
+  Obviously, this should not be continuous. Recall the definition of continuity. Namely that \(\forall \epsilon > 0,\ \forall x\ \exists \delta > 0\ \forall y\ | x - y | < \delta \Rightarrow |f(x) - f(y)| < \epsilon\). Furthermore, non-continuity entails that \(\exists \epsilon > 0\ \exists x\ \forall \delta > 0\ \exists y\ |x - y| < \delta\) and \(|f(x) - f(y)| \geq \epsilon\).
 
-  So let \(x = 0, \epsilon = 0.\) now let \(\delta > 0\). Let \(y = \frac{-\delta}{2}\). Then \(|x - y| = \frac{\delta}{2} < \delta\), but \(|f(x) - f(y)| = |20 -0| = 20 > 10 = \epsilon\)
+  So let \(x = 0, \epsilon = 10.\) now let \(\delta > 0\). Let \(y = \frac{-\delta}{2}\). Then \(|x - y| = \frac{\delta}{2} < \delta\), but \(|f(x) - f(y)| = |20 -0| = 20 > 10 = \epsilon\)
 \end{exa}
 
 Now let's take \(\begin{matrix} g: \R \to \R \\  x \mapsto 3x\end{matrix}
-\). So we can get \(\forall \epsilon > 0\ \forall x > 0,\ \exists \delta > 0,\ \forall y |x - y| < \delta \Rightarrow |g(x) - g(y)| < \epsilon\).
+\). So we can get \(\forall \epsilon > 0\ \forall x,\ \exists \delta > 0,\ \forall y\ |x - y| < \delta \Rightarrow |g(x) - g(y)| < \epsilon\).
 Now let \(\epsilon > 0\), and \(x \in \R\). Take \(\delta = \frac{\epsilon}{3}\). Then for all \(y \in \R\) with \(|x -y| < \frac{\epsilon}{3}\),
 
 \begin{align*}
