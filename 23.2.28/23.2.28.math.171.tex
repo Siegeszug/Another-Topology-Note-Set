@@ -46,7 +46,7 @@ This next proposition will hi-light and explain a commonly used hand-wave. Namel
   \begin{enumerate}
   \item \(\emptyset\), vacuously open, since there are no points in the empty set.
     \(X\) is open, since for every point \(\vec{x}\), the first basis axiom guarantees that there exists a \(B \in \mathcal{B}\) such that \(\vec{x} \in B\).
-  \item Suppose \(U_i \in \tau\) for all \(i \in I\). So let some point \(x \in \bigcup_{i \in I} U_i\). Then there is some \(j \in I\) such that \(x \in U_j\). Since \(U_j\) is open, there exists a \(B \in \mathcal{B}\) such that \(x \in B\) and \(B \subseteq U_j\). So then \(x \in B \subseteq \bigcup_{i \in I}U_i\), so \(U_{i \in I} U_i\) is open
+  \item Suppose \(U_i \in \tau\) for all \(i \in I\). So let some point \(x \in \bigcup_{i \in I} U_i\). Then there is some \(j \in I\) such that \(x \in U_j\). Since \(U_j\) is open, there exists a \(B \in \mathcal{B}\) such that \(x \in B\) and \(B \subseteq U_j\). So then \(x \in B \subseteq \bigcup_{i \in I}U_i\), so \(\bigcup_{i \in I} U_i\) is open
   \item Let's induct for the final part.
 
     Suppose \(U, V \in \tau\), and consider \(U \cap V\). Now Let \(x \in U \cap V\). Since \(U\) is open, there is a basis element \(B_1\) such that \(x \in B_1\), and \(B_1 \subseteq U\). Then also since \(V\) is open, \(\exists B_2\) such that \(x \in B_2\) and \(B_2 \subseteq V\). Thus by basis axiom two, \(\exists B_3 \in \mathcal{B}\) such that \(x \in B_3\) and \(B_3 \subseteq B_1 \cap B_2\). So \(U \cap V\) is open. This completes the next part of our induction.
