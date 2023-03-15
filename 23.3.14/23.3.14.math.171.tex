@@ -50,9 +50,9 @@ We recall the definition of the product topology:
 
     \begin{align*}
       B_1 \cap B_2 &= (U_1 \times V_1) \cap (U_2 \times V_2) \\
-                   &= \opn (x, y) \in X \times Y \stbar x \in U_1\ \mathrm{and}\ y \in V_1 \cls \cap \opn (x, y) \in X \times Y \stbar x \in U_2\ \mathrm{and}\ y \in V_2 \cls \\
-                   &= \opn (x, y) \in X \times Y \stbar x \in U_1 \wedge x \in U_2 \wedge y \in V_1 \wedge Y \in V_2 \cls \\
-                   &= \opn (x, y) \in X \times Y \stbar x \in U_1 \cap U_2 \wedge y \in V_1 \cap V_2 \cls \\
+                   &= \opn (x, y) \in X \times Y \stbar x \in U_1 \wedge y \in V_1 \cls \cap \opn (x, y) \in X \times Y \stbar x \in U_2 \wedge y \in V_2 \cls \\
+                   &= \opn (x, y) \in X \times Y \stbar (x \in U_1) \wedge (x \in U_2) \wedge (y \in V_1) \wedge (Y \in V_2) \cls \\
+                   &= \opn (x, y) \in X \times Y \stbar (x \in U_1 \cap U_2) \wedge (y \in V_1 \cap V_2) \cls \\
                    &= (U_1 \cap U_2) \times (V_1 \cap V_2)
     \end{align*}
     This is a basis element, so for any \((x, y) \in B_1 \cap B_2\) we can set \(B_3 = B_1 \cap B_2\) to satisfy the axiom.
@@ -97,7 +97,7 @@ We recall the definition of the product topology:
     f\1(B) &= \opn z \in Z \stbar f(z) \in B \cls \\
            &= \opn z \in Z \stbar (f_1(z), f_2(z)) \in U \times V \cls \\
            &= \opn z \in Z \stbar f_1(z) \in U\ \mathrm{and}\ f_2(z) \in V \cls \\
-           &= \opn \in Z \stbar f_1(z) \in U \cls \cap \opn z \in Z \stbar f_1(z) \in V \cls \\
+           &= \opn z \in Z \stbar f_1(z) \in U \cls \cap \opn z \in Z \stbar f_1(z) \in V \cls \\
            &= \underbrace{\underbrace{f\1_1(U)}_{\mathrm{open}} \cap \underbrace{f_2\1(V)}_{\mathrm{open}}}_{\mathrm{open}}
   \end{align*}
 \end{enumerate}
@@ -122,7 +122,7 @@ Let's give one final lemma which should illustrate how we reason about the produ
 \end{lm}
 
 \begin{proof}
-  We want to show that \((Z \times W)^c\)is open in the product topology. Notice that \((Z \times W)^c = \underbrace{(Z^c \times Y)}_{\mathrm{open}} \cap \underbrace{(X \times W^c)}_{\mathrm{open}}\). So \((Z \times W)^c\)is open, as desired.
+  We want to show that \((Z \times W)^c\) is open in the product topology. Notice that \((Z \times W)^c = \underbrace{(Z^c \times Y)}_{\mathrm{open}} \cap \underbrace{(X \times W^c)}_{\mathrm{open}}\). So \((Z \times W)^c\) is open, as desired.
 \end{proof}
 
 \begin{ques}
