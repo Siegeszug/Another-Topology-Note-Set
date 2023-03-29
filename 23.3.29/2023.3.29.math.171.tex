@@ -24,7 +24,7 @@ We give an answer by picture:
 Now we continue with the class content, and give a somewhat strange characterization of continuity:
 
 \begin{thm}
-  Let \(X, Y\) be topological spaces, \(f: X \to Y\) be a function. Then \(f\) is continuous iff for each subset \(A \subseteq X\), one has \(f(\overline{A} \subseteq \overline{f(A)})\).
+  Let \(X, Y\) be topological spaces, \(f: X \to Y\) be a function. Then \(f\) is continuous iff for each subset \(A \subseteq X\), one has \(f(\overline{A}) \subseteq \overline{f(A)}\).
 \end{thm}
 
 \begin{proof}
@@ -63,7 +63,7 @@ Now we continue with the class content, and give a somewhat strange characteriza
   Now it would be nice to express things happening ``near'' a point or ``locally'' on the whole space.
 
   \begin{exa}
-    For example, back in calc 1, given a function \(f: \R \to \R\), \((x, f(x))\) Was said to be a \textbf{local max} if {\color{red}for all \(\epsilon > 0\)} \(f(x) \geq f(y)\) \sout{for all \(y\) ``near'' \(x\)} {\color{red} for all \(y \in B(x, \epsilon)\)}
+    For example, back in calc 1, given a function \(f: \R \to \R\), \((x, f(x))\) Was said to be a \textbf{local max} if {\color{red}there exists \(\epsilon > 0\)} \(f(x) \geq f(y)\) \sout{for all \(y\) ``near'' \(x\)} {\color{red} for all \(y \in B(x, \epsilon)\)}
 
     Notice that this is the same as saying:
 
@@ -84,7 +84,7 @@ Now we continue with the class content, and give a somewhat strange characteriza
   \begin{thm}[The local characterization of continuity]
     Let \(f: X \to Y\) be a function between topological spaces, and let \(\opn U_i \cls_{i \in I}\) be an open cover of \(X\)
 
-    Then \(f\) is continuous if and only if \(f\vert_{U_i} U_i \to Y\) is continuous for all \(i \in I\).
+    Then \(f\) is continuous if and only if \(f\vert_{U_i}: U_i \to Y\) is continuous for all \(i \in I\).
   \end{thm}
 
   In other words, you are continuous if and only if you are locally continuous.
@@ -92,7 +92,7 @@ Now we continue with the class content, and give a somewhat strange characteriza
   \begin{proof}
     \begin{enumerate}
     \item [(\(\Rightarrow\))] Done. \partdone.
-    \item [(\(\Leftarrow\))] Suppose \(f\vert_{U_i}: U_i \to Y\) is continuous for all \(i \in I\). Let \(V \subseteq Y\) be an open subset. Then \(f\1(V) \cap U_i = f\vert_{U_i}\1(V)\) for each \(i \in I\). Notice that \(f\vert_{U_i}\1\) is continuous, \(f\1(V\) is therefore open.
+    \item [(\(\Leftarrow\))] Suppose \(f\vert_{U_i}: U_i \to Y\) is continuous for all \(i \in I\). Let \(V \subseteq Y\) be an open subset. Then \(f\1(V) \cap U_i = f\vert_{U_i}\1(V)\) for each \(i \in I\). Notice that \(f\vert_{U_i}\) is continuous, \(f\1(V)\) is therefore open.
     \end{enumerate}
   \end{proof}
 
