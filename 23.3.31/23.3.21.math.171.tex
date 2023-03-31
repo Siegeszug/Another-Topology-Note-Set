@@ -1,0 +1,42 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{March 31, 2023}\hrule
+\vspace{.2in}
+
+Let's cover a bit of the theorem that we stated during class yesterday before we get to the recitation.
+
+\begin{thm}
+  Let \(X, Y\) be topological spaces, let \(\opn U_i \cls_{i \in I}\) be an open cover of \(X\).
+  \begin{enumerate}
+  \item If \(f: X \to Y\), \(g: X \to Y\)then \(f = g\) iff \(f\vert_{U_i} = g\vert_{U_i}\) for all \(i \in I\).
+  \item If \(f_i : U_i \to Y\) is a continuous function for each \(i \in I\) and \(f_i\vert_{U_i \cap U_j} = f_j\vert_{U_i \cap U_j}\) for all \(i, j \in I\) then there exists a unique continuous function \(f:X \to Y\) such that \(f\vert_{U_i} = f_i\) for all \(i \in I\).
+  \end{enumerate}
+\end{thm}
+\begin{rmk}
+  These two properties together are known as the ``sheaf property''.
+\end{rmk}
+Let's see if we can give this a proof
+
+\begin{proof}
+  \begin{enumerate}
+  \item Suppose \(f = g\). Then clearly, \(f\vert_{U_i} = g\vert_{U_i}\) for all \(i \in I\).
+
+    Conversely suppose \(f\vert_{U_i} = g\vert_{U_i}\) for all \(i \in I\). We want to show that \(f = g\). Let \(x \in X\). Since \(X = \bigcup_{i \in I} U_i\), there exists an \(i\) such that \(x \in U_i\). Then \(f(x) = f\vert_{U_i}(x) = g\vert_{U_i}(x) = g(x)\), and thus since \(X\) and \(x\) are arbitrary, \(f = g\). \partdone
+  \item Let \(f: X \to Y\) be defined by \(f(x) = f_i(x)\) when \(x \in U_i\). Notice that there is a question of well-definedness here. To see if this \(f\) is well-defined, we need to check that \(f_i(x) = f_j(x)\) when \(x \in U_i\) and \(x \in U_j\) (for some \(i,j \in I\)). This follows directly from the second part of our assumption. Namely, \(x \in U_i \cap U_j\), and we know that \(f_i\vert_{U_i \cap U_j}(x) = f_j\vert_{U_i \cap U_j}(x)\), so \(f_i(x) = f_j(x)\) so \(f\) is well-defined.
+
+    Note \(f\vert_{U_i} = f_i\) for each \(i \in I\) by definition. By the local characterization of continuity, we know that an everywhere locally continuous function is continuous, so we get that \(f\) is continuous.
+
+    Now we need uniqueness. Suppose \(g: X \to Y\) is a second continuous function such that \(g\vert_{U_i} = f_i\) for all \(i \in I\). Then, by part (1), we get that \(f = g\)
+  \end{enumerate}
+\end{proof}
+
+We better get to the actual recitation now...
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
