@@ -1,9 +1,30 @@
 * Topology Notes
 
+** Introduction
 These notes were taken by Kyle Dituro in the Fall semester of 2023 at Tufts University. The course was taught by Sebastian Bozlee at the undergraduate level. The intended textbook for the course is Topology Second Edition by James R. Munkres.
 
-I would say that I tried my best to keep this neat, but that would be a bold-faced lie. I did the bare minimum of including a .gitignore to deal with the awful byproducts of PdfLaTeX, but that's about it. I probably forgot to spell-check most of these documents, and some of them are liable to have blatant errors in them. 
+I probably forgot to spell-check most of these documents, and some of them are liable to have blatant errors in them. 
 
 This repo includes LaTeX files, including my personal header file used to typeset these notes. If you have any questions about this header file, I probably can't answer them even though I wrote the damn thing, but I'll sure give it a try. 
 
-The TeX was done in emacs with some very strange keybinds (if I do say so myself), so good luck trying to replicate live TeXing notes using this header.
+The TeX was done in Emacs with some very strange keybinds, so good luck trying to replicate live TeXing notes using this header.
+
+** List of Topics
+
+| Month |     Date | Topic                                               |
+|-------+----------+-----------------------------------------------------|
+| Feb   | 23.02.10 | Real Continuity                                     |
+|       | 23.02.14 | Real Continuity and Topology Def                    |
+|       | 23.02.17 | Topology Def, Open sets, and Topological Continuity |
+|       | 23.02.21 | Closed sets and the Zariski Topology                |
+|       | 23.02.24 | The Subspace Topology and Bases                     |
+|       | 23.02.28 | Bases                                               |
+| Mar   | 23.03.01 | Universal Props, Limit points, and Adherent points  |
+|       | 23.03.07 | Homeomorphisms                                      |
+|       | 23.03.10 | Subbases and the Product Topology                   |
+|       | 23.03.14 | More on the Product Topology                        |
+|       | 23.03.28 | Interior and Closure                                |
+|       | 23.03.29 | Local Continuity and Restrictions                   |
+|       | 23.03.31 | The Sheaf Property                                  |
+| Apr   | 23.04.04 | The Quotient Topology                               |
+
