@@ -1,0 +1,210 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{decorations.markings}
+
+\def\nframes{30}
+\def\frame{0}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{April 4, 2023}\hrule
+\vspace{.2in}
+
+We begin thinking about the quotient topology, which will give us the power to ``glue'' topological spaces.
+
+The most common example is the famous transformation of the unit square into a torus (doughnut) by associating opposite sides of squares as equal. Namely, we identify
+\begin{align*}
+  (0, y) &\sim (1, y) \\
+  (x, 0) &\sim (x, 1)
+\end{align*}
+in the space \(X = [0, 1] \times [0, 1]\).
+
+\begin{center}
+  \foreach \frame in {0,0,0,0,1,...,\nframes}
+  {
+
+    \pgfmathsetmacro{\time}{\frame / \nframes}
+    \pgfmathsetmacro{\c}{20 + (3 - 20) / (1 + exp(-10 * (\time - 0.6)))}
+    \pgfmathsetmacro{\a}{20 + (1 - 20) / (1 + exp(-8 * (\time - 0.3)))}
+    \pgfmathsetmacro{\xrange}{3 + (180 - 3) / (1 + exp(-14 * (\time - 0.6)))}
+    \pgfmathsetmacro{\yrange}{3 + (180 - 3) / (1 + exp(-10 * (\time - 0.3)))}
+    \pgfmathsetmacro{\theta}{90 + (45 - 90) * \time}
+    \pgfmathsetmacro{\phi}{0 + (25 - 0) * \time}
+
+    \pgfplotsset{
+      border one/.style={
+        thick,
+        red,
+        samples y  = 0,
+        variable   = \t,
+        domain     = -\xrange:\xrange,
+        postaction = {decorate},
+        decoration = {markings,
+          mark = at position 0.48 with {\arrow{stealth}},
+          mark = at position 0.52 with {\arrow{stealth}}}
+      },
+      border two/.style={
+        thick,
+        green,
+        samples y  = 0,
+        variable   = \t,
+        domain     = -\yrange:\yrange,
+        postaction = {decorate},
+        decoration = {markings, mark = at position 0.5 with {\arrow{stealth}}}
+      }
+    }
+
+
+
+    \begin{tikzpicture}
+      \useasboundingbox (0, 0) rectangle (6, 6);
+      \begin{axis} [
+        hide axis,
+        view               = {\theta}{\phi},
+        domain             = -\xrange:\xrange,
+        y domain           = -\yrange:\yrange,
+        samples            = 20,
+        samples y          = 20,
+        unit vector ratio  = 1 1 1,
+        declare function   = {
+          u(\x,\y) = (\c + \a * cos(\y)) * cos(\x);
+          v(\x,\y) = (\c + \a * cos(\y)) * sin(\x);
+          w(\x,\y) = \a * sin(\y);
+        }
+        ]
+
+        \addplot3 [
+        surf,
+        color         = blue,
+        opacity       = 0.01,
+        faceted color = white,
+        z buffer      = sort,
+        fill opacity  = 0.5] ({u(\x, \y)}, {v(\x, \y)}, {w(\x, \y)});
+
+        \addplot3 [border one] ({u(\t, \yrange)}, {v(\t, \yrange)}, {w(\t, \yrange)});
+        \addplot3 [border one] ({u(\t, -\yrange)}, {v(\t, -\yrange)}, {w(\t, -\yrange)});
+        \addplot3 [border two] ({u(\xrange, \t)}, {v(\xrange, \t)}, {w(\xrange, t)});
+        \addplot3 [border two] ({u(-\xrange, \t)}, {v(-\xrange, \t)}, {w(-\xrange, t)});
+      \end{axis}
+    \end{tikzpicture}}
+\end{center}
+So really what we are doing is identifying equivalence classes, which immediately brings to mind quotients and their universal property:
+
+\begin{thm}
+  \(
+  \begin{matrix}
+    p: X \to X /\sim \\ x \mapsto [x]
+  \end{matrix}
+  \) {\color{red} a continuous function} has the following property:
+  \begin{enumerate}
+  \item if \(f: X/\sim \to Z\) is any {\color{red} continuous} function, \(f \circ p: X \to Z\) respects the equivalence relation.
+  \item If \(g: X \o Z\) is any {\color{red} continuous} function that respects \(\sim\), then there exists a unique {\color{red} continuous} function \(f: X/\sim \to Z\) such that
+
+    \begin{center}
+      \begin{tikzcd}
+        X \arrow[d, "p"] \arrow[dr, "g"] & \\
+        X /\sim \arrow[dotted, r, "\exists ! f"] & Z 
+      \end{tikzcd}
+    \end{center}
+  \end{enumerate}
+\end{thm}
+
+What should go in this topology?
+
+Recall \(S = \opn 1, 2 \cls\) with the topology \(\tau_S = \opn \emptyset, \opn 1 \cls, S \cls\).
+
+Then a continuous function \(f : X \to S\) is ``the same'' as an open subset of \(X\). In other words, given \(f\), \(f\1(\opn 1\cls)\) is an open set.
+
+Assume that \(p: X \to X/\sim\) has the universal property. Then from part 2, for any function \(g: X \to S\) respecting \(\sim\), we should get a unique continuous \(f: X/\sim \to S\) making the diagram commute. Since \(g\) respects \(\sim\), if \(x \in g\1(\opn 1 \cls)\), we better have for any \(x_2 \sim x\sb1\) that \(x\sb2 \in g\1(\opn 1 \cls)\) .
+i.e. the possible open subsets we get from \(g\1(\opn 1 \cls)\) are the open subsets with the property that \(x\sb1 \in U,\ x_1 \sim x_2 \Rightarrow x_2 \in U\).
+
+So using the universal property, we should have an \(f: X/\sim \to S\) that makes \begin{tikzcd}[cramped, sep=small] X \arrow[d] \arrow[dr] & \\ X/\sim & S \arrow[leftarrow, l]\end{tikzcd} commute.
+
+This function is defined by \(f([x]) = g(x)\).
+
+\begin{clm}
+  The open subsets we get from \(g\) are the preimages of the open subsets we get from \(f\). It follows that a subset \(U \subseteq X / \sim\) should be open if and only if \(p\1(U)\) is open
+\end{clm}
+
+\begin{df}
+  A continuous function \(p: X \to Y\) of topological spaces is a \textbf{quotient map} if \(U \subseteq Y\) is open if and only iff \(p\1(U) \subseteq X\) is open.
+
+  This can be stated equivalently using complements as:
+
+  \begin{align*}
+    Z \subseteq Y \text{ is closed} \Longleftrightarrow p\1(Z) \subseteq X \text{ is closed}.
+  \end{align*}
+\end{df}
+
+
+\begin{fact}
+  If \(p:X \to Y\) is surjective and \(B \subseteq Y\) then
+  \begin{align*}
+    p(p\1(B)) = B
+  \end{align*}
+  Notice that this is not necessarily true, and in fact is often not, if \(p\) is not surjective.
+\end{fact}
+
+\begin{df}
+  A subset \(C\) of \(X\) is said to be \textbf{saturated} with respect to a function \(p: X \to Y\) if there exists a subset \(B\) of \(Y\) such that \(C = p\1(B)\).
+\end{df}
+
+\begin{lm}
+  \(C \subseteq X\) is saturated with respect to \(p: X \to Y\) if and only if \(C\) contains every fiber \(p\1(\opn y \cls )\) that is intersects.
+\end{lm}
+
+\begin{proof}
+  \begin{enumerate}
+  \item [(\(\Rightarrow\))]Suppose that \(C\) is saturated, and let \(B \subseteq Y\) be the subset such that \(C =  p\1(B)\).
+
+    Then if \(y \in y\), and \(C \cap p\1(\opn y\cls)\), then \(\exists c \in C\) such that \(p(c) = y\).
+
+    Then \(y \in B\) so \(p\1(\opn y \cls) \subseteq p\1(B) = C\) by assumption \partdone
+  \item [(\(\Leftarrow\))] Now suppose that \(C\) contains every fiber that it intersects. Consider \(B = p(C)\). Then since \(B = \bigcup_{b \in B} \opn b \cls\), \(p\1 B = \bigcup_{b \in B} p\1(\opn b \cls)\).
+  \end{enumerate}
+
+  Since \(p\1(\opn b \cls) \cap C \neq \emptyset\)  for all \(b \in B\), \(p\1(\opn b \cls) \subseteq C\).
+
+  Then this implies that \(p\1(B) \subseteq C\).
+
+  On the other hand, \(C \subseteq p\1(p(C))\), so \(C = p\1(B)\).
+\end{proof}
+
+Now with all of this done, we can finally re-write what a quotient map is.
+
+\begin{align*}
+p: X \to Y \text{is a quorient map} \Longleftrightarrow
+  \begin{pmatrix}
+    p \text{ is continuous, surjective, and} \\ \text{the image of each saturated} \\ \text{open set of } X \topn
+  \end{pmatrix} \\
+  \hspace{1em}\\
+  \left(\forall U \subseteq Y, U\topn \right) \Leftrightarrow p(v) \text{ is open in } y \Leftrightarrow V \text{ is a saturated subset of } X \topn
+\end{align*}
+
+\begin{exa}
+  \(\pi_1: X \times Y \to X\) is a quotient map.
+\end{exa}
+
+\begin{df}
+  If \(X\) is a topological space and \(A\) is a set, and \(p: X \to A\) is a surjective function, there is a unique topology on \(A\) such that \(p\) becomes a quotient map. This is the \textbf{quotient topology} on \(X\).
+  \begin{align*}
+    U \subseteq A \topn \Leftrightarrow p\1(U) \subseteq X \topn
+  \end{align*}
+\end{df}
+Let's now prove that this is a topology. This should be easy.
+\begin{proof}
+  \begin{enumerate}
+  \item \(\emptyset \subseteq A\) is open since \(p\1(\emptyset) = \emptyset\) is open inp \(X\)
+  \item \(A \subseteq A\) is open since \(p\1(A) = X\) is open in \(X\).
+  \item If \(\opn U_i \cls\) are open, then \(p\left(\bigcup U_i \right) = \underbrace{\bigcup_{i \in I} \underbrace{p\1(U_i)}_{\text{open in } X}}_{\text{open in } X}\), so \(\bigcup_{i \in I} U_i\) is open.
+  \end{enumerate}
+\end{proof}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
