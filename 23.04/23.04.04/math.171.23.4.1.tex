@@ -6,7 +6,7 @@
 \pgfplotsset{compat=newest}
 \usetikzlibrary{decorations.markings}
 
-\def\nframes{5}
+\def\nframes{4}
 \def\frame{0}
 
 \begin{document}
@@ -24,7 +24,7 @@ The most common example is the famous transformation of the unit square into a t
 in the space \(X = [0, 1] \times [0, 1]\).
 
 \begin{center}
-  \foreach \frame in {0,0,0,0,1,...,\nframes}
+  \foreach \frame in {0,1,...,\nframes}
   {
 
     \pgfmathsetmacro{\time}{\frame / \nframes}
@@ -102,7 +102,7 @@ So really what we are doing is identifying equivalence classes, which immediatel
   \) {\color{red} a continuous function} has the following property:
   \begin{enumerate}
   \item if \(f: X/\sim \to Z\) is any {\color{red} continuous} function, \(f \circ p: X \to Z\) respects the equivalence relation.
-  \item If \(g: X \o Z\) is any {\color{red} continuous} function that respects \(\sim\), then there exists a unique {\color{red} continuous} function \(f: X/\sim \to Z\) such that
+  \item If \(g: X \to Z\) is any {\color{red} continuous} function that respects \(\sim\), then there exists a unique {\color{red} continuous} function \(f: X/\sim \to Z\) such that
 
     \begin{center}
       \begin{tikzcd}
