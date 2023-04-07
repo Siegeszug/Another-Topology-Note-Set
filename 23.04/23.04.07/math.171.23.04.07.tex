@@ -1,0 +1,152 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+
+\begin{thm}[Universal Property of the Quotient]
+  Let \(p: X\ to Y\) be a quotient map. Then for any continuous function \(g: X \to Z\) satisfying \(p(x_1) = p(x_2) \Rightarrow g(x_1) = g(x_2)\), there exists a unique function \(f: Y \to Z\) such that
+  \begin{center}
+    \begin{tikzcd}
+      X \arrow[dr, "q"] & \\
+      Y \arrow[leftarrow, u, "p"]& Z \arrow[leftarrow, l, "f"]
+    \end{tikzcd}
+  \end{center}
+\end{thm}
+
+\begin{proof}
+  We want to show that this \(f\) is well-defined, unique, makes the diagram ommute, and is continuous.
+
+  For well-definedness, we need that each element \(y \in Y\) can be written as \(p(x)\) for some \(x \in x\) and if \(p(x_1) = p(x_2)\) for some \(x_1, x_2 \in X\) we have that \(g(x_1) = g(x_2)\). The first part is true since \(p\) is surjective, and the second part is true by hypothesis.
+
+  in order for the diagram to commute, we need
+  \begin{align*}
+    f(p(x)) = g(x) \quad \text{for all } x\in X,
+  \end{align*}
+  Which is true by construction, so \(f(p(x)) = g(x)\) fully determines \(f\), so we have uniqueness.
+
+  To check that \(f\) is continuous, suppose \(U \subseteq Z\) is an open subset. Then since \(g\) is continuous, \(g\1(U) \subseteq X\) is open. Then \(g\1(U) = p\1(f\1(U))\) is open in \(X\).
+
+  Then by definition of the quotient map, \(f\1(U) \subseteq Y\) is open, as desired.
+\end{proof}
+
+\begin{exa}[Quotients need not behave well with respect to subspaces]
+  Write \(\R^\delta\) for \(\R\) with the discrete topology, and \(\R^i\) for \(\R\) with the indiscrete topology.
+
+  Say
+  \begin{align*}
+    X = \R^\delta \sqcup \R^i = \opn (1, x) \stbar x \in \R \cls \cup \opn (2, x) \stbar x \in \R \cls.
+  \end{align*}
+
+  Which will gain the union topology: the open sets are those of the form \((1 \times U) \cup (2 \times V)\) where \(U \subseteq \R^\delta\) ad \(V \subseteq \R^i\) are open.
+
+  Consider \(p
+  \begin{matrix}
+    \pi: X \to \R^i \\ (1, x) \mapsto x \\ (2, x) \mapsto x
+  \end{matrix}.
+  \), which we claim to be a quotient map.
+
+  % \begin{center}
+  %   \begin{tikzpicture}
+  %     \draw (-1,0) -- (1,0) \node[anchor=right]{\(1\ times \R\)};
+  %   \end{tikzpicture}
+  % \end{center}
+
+  Let \(B \subseteq \R^i\), then \(\pi\1(B) = (1 \times B)\cup (2 \times B)\) is open if an only if \(B = \emptyset, \R\)
+
+  But! If we restrict \(\pi\) to \(\R^\delta\), then we get \(
+  \begin{matrix}
+
+    R^\delta \to \R^i \\ (1, x) \mapsto x
+  \end{matrix}
+  \) which is not a quotient, since too many pre-images are open.
+\end{exa}
+
+\begin{lm}
+  Let \(p:X \to Y\) be a quotient map, \(B \subseteq Y\) is a subset, \(A = p\1(b)\) be its preimage. If \(B\) is open (or closed), then the restriction \(q = p\vert_A: A \to B\) is also a quotient map. (e.g. \(\widetilde{D}(z) \to D(z) \) from this weeks recitation is an example).
+\end{lm}
+
+\begin{proof}
+  Note that if \(V \subseteq B\) then \(q\1(V) = p\1(V)\) . Assume that \(A\) is open, and let \(V \subseteq B\) be a subset. We know that \(q\) is continuous and \(q\) is surjective by definition. All that remains to be shown is that \(q\1(V) \subseteq A\) is open, so \(V \subseteq B\) is open.
+
+  Well \(q\1(V) = p\1(V)\) since \(q\1(V) \subseteq A\) is open and \(A \subseteq X\) is open, \(q\1(V) = p\1(V)\) is open in \(X\).
+
+  Since \(p\) is a quotient map, \(V \subseteq Y\) is open. Since \(V \subseteq B\) and \(B \subseteq Y\) is open, \(V \subseteq B\) is open.
+
+  For the case where \(B\) is closed, replace ``open'' with ``closed'' throughout.
+\end{proof}
+
+\begin{exa}[Hausdorff not preserved by quotients]
+  Let \(X = \R \sqcup \R\), and take the equivalence relation
+  \begin{align*}
+    (1, x) \sim (2, x) \quad \text{when } x \neq 0.
+  \end{align*}
+
+  And consider \(\pi: X \to X/\sim\). This construction is called the ``bug-eyed line'' or the ``line with two origins''
+
+  Let \(x = [(1, 0)], y = [(2,0)]\). Suppose that \(U\)  is an open neighborhood of \(x\) and \(V\) is an open neighborhood of \(Y\).
+
+  Well since \(U\) is open, \(\pi\1(U)\) is open. Then for any arbitrary set, its pre-image will be the two copies of \(U\) which live in each copy of \(\R\) everywhere but at \(0\).
+
+  Notice that \(U\) and \(V\) necisarilly intersect, so \(X/ \sim\) is not Hausdorff.
+\end{exa}
+
+\begin{ques}
+  What if \(\sim\) was \((1,x) \sim \left(2, \frac{1}{x}\right)\) instead? What would \(X/ \sim\) be?
+\end{ques}
+
+\begin{lm}
+  Let \(p: X \to Y\) be a quotient map. \(q: Y \to Z\) be a function. Then \(q\) is a quotient map if and only if \(q \circ p\) is a quotient map.
+\end{lm}
+
+\begin{proof}
+  Suppose that \(q\) is a quotient map. then \(q \circ p\) is continuous and surjective. Then 
+
+  \begin{align*}
+    B \subseteq Z \topn &\Leftrightarrow q\1(B) \subseteq Y \topn \\
+                        &\Leftrightarrow p\1(q\1(B)) \subseteq X \topn \\
+                        &\Leftrightarrow (q \circ p)\1 (B) \subseteq X \topn.
+  \end{align*}\partdone
+
+  Conversely, suppose \(q \circ p: X \to Z\) is a quotient map. Then since \(q \circ p\) is surjective, \(q\) is surective. Suppose \(B \subseteq Z\). Then
+
+  \begin{align*}
+    B \subseteq Z \topn &\Leftrightarrow (q \circ p)\1(B) \subseteq X \topn \\
+                        &\Leftrightarrow p\1(q\1(B)) \subseteq X \topn \\
+                        &\Leftrightarrow q\1(B) \subseteq Y \topn.                
+  \end{align*}
+  Therefore \(q\) is a quotient map.
+\end{proof}
+
+\begin{exa}
+  Let \(X = \R^3 - \opn 0 \cls\), \(\sim\) be the relation
+  \begin{align*}
+    \vec{x} \sim \vec{y} \Longleftrightarrow \exists c \in \R - \opn 0 \cls \st c\vec{x} = \vec{y}.
+  \end{align*}
+
+  Then \(\pi: X \to X/\sim\ = \R\mathbb{P}^2\).
+
+  Let \[
+  \begin{matrix}
+    p: X \to \mathbb{S}^2 = \opn (x, y, z) \in \R^3 \stbar x^2 + y^2 + z^2 =1 \cls \\ \vec{x} \mapsto \frac{1}{|\vec{x}|}\vec{x}
+  \end{matrix}.
+  \]
+
+  Believe that this is a quotient map.
+
+  Define \(
+  \begin{matrix}
+q : \mathbb{S}^2 \to \R\mathbb{P}^2 \\ \vec{x} \mapsto [x:y:z]
+  \end{matrix}
+  \).
+
+  The composite \(q \circ p = \pi\).
+\end{exa}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
