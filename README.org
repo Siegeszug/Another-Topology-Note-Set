@@ -27,4 +27,8 @@ The TeX was done in Emacs with some very strange keybinds, so good luck trying t
 |       | 23.03.29 | Local Continuity and Restrictions                   |
 |       | 23.03.31 | The Sheaf Property                                  |
 | Apr   | 23.04.04 | The Quotient Topology                               |
+|       | 23.04.07 | More about the Quotient Topology                    |
+|       | 23.04.11 | Quotients, Gluing, and Manifolds                    |
+
+
 
