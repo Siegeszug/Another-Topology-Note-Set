@@ -1,0 +1,174 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{April 11, 2023}\hrule
+\vspace{.2in}
+
+\begin{cor}[``Images are almost quotient spaces'']
+  Let \(g: X \to Z\) be a surjective continuous map.
+  Let \(\sim\) be the equivalence relation on \(X\) given by
+
+  \begin{align*}
+    x_1 \sim x_2 \Longleftrightarrow g(x_1) = g(x_2).
+  \end{align*}
+
+  Then \(g\) induces a continuous \textbf{bijective} map \(f: X/\sim\ \to Z\) given by \(f([x]) = g(x)\), which is a homeomorphism if and only if \(g\) is a quotient map.
+
+  \begin{center}
+    \begin{tikzcd}
+      X \arrow[dr, "g"]& \\
+      X/\sim \arrow[u, leftarrow, "\pi"] & Z  \arrow[l, leftarrow, "f"]
+    \end{tikzcd}
+  \end{center}
+\end{cor}
+
+\begin{proof}
+  It is clear that \(\sim\) is an equivalence relation.
+
+  We know \(f\) is well defined and continuous from the universal property of the quotient.
+
+  It is... uhhh... "clear" that \(f\) is bijective:
+  \begin{itemize}
+  \item (\textbf{injective}): Pretty clear
+  \item (\textbf{surjective}): Let \(z \in Z\). Since \(g\) is surjective, \(\exists x \in X\) such that \(g(x) = z\). Then \(f([x]) = z\).
+  \end{itemize}
+
+  Suppose \(f\) is a homeomorphism. Then in particular \(f\) is a quotient map:
+
+  \begin{align*}
+    U \subseteq Z \topn \Longleftrightarrow f\1(U) \subseteq X/\sim\topn
+  \end{align*}
+
+  Then \(g = f \circ \pi\) is a composite of quotient maps, and is therefore a quotient map.
+
+  Conversely, if \(g\) is a quotient map, then it also has the universal property of the quotient:
+
+  By the universal property of \(g\), \(\exists ! h: Z \to X/\sim\) such that
+
+  \begin{center}
+    \begin{tikzcd}
+      X \arrow[dr, "g"]& \\
+      X/\sim \arrow[u, leftarrow, "\pi"] & Z \arrow[l, "h"] 
+    \end{tikzcd}
+  \end{center}
+
+  Taking composites:
+
+    \begin{center}
+    \begin{tikzcd}
+      & X \arrow[dr, "\pi"]& \\
+      X/\sim \arrow[ur, leftarrow, "\pi"]& & X/\sim \arrow[ll, leftarrow, "h \circ f"] 
+    \end{tikzcd}
+  \end{center}
+  So by the uniqueness in the universal property for \(\pi\), we get that \(h \circ f = \id_{X/\sim}\).
+
+  Symmetrically, \(f \circ h = \id_Z\), s \(f\) is a homeomorphism, as desired.
+\end{proof}
+
+\begin{exa}
+  Recall \(\R\P^2 = \R^3 - \opn 0 \cls / \sim\).
+
+  This has a particularly nice open subset \(D(z)\):
+
+  \begin{align*}
+    D(z) = \opn [x : y : z] \in \R\P^2 \stbar z \neq 0 \cls.
+  \end{align*}
+
+  This is homeomorphic to \(\R^2\) via
+
+  \begin{align*}
+    \R^2 &\to D(z) \\
+    (x, y) &\mapsto [x: y : 1] \\
+    \left(\frac{x}{z}, \frac{y}{z}\right) &\mapsfrom [x: y: z]
+  \end{align*}
+
+  Similarly, there are open subsets
+
+  \begin{align*}
+    D(x) = \opn [x: y: z] \stbar x \neq 0 \cls \cong \R^2 \\
+    D(y) = \opn [x: y: z] \stbar y \neq 0 \cls \cong \R^2 \\
+  \end{align*}
+
+  Notice that these open sets form an open cover of \(\R\P^2\): \(D(x) \cup D(y) \cup D(z) = \R\P^2\).
+
+  This is nice.
+\end{exa}
+
+\begin{df}
+  A topological space \(X\) is said to be a \textbf{Topological Manifold} if it has an open cover \(\opn U_i \cls_{i \in I}\) such that:
+  \begin{enumerate}
+  \item each \(U_i\) is homeomorphic to an open subset of \(\R^n\) for some \(n\) (\(n\) the dimension of \(X\))
+  \item \(X\) is Hausdorff 
+  \item \sout{something technical that we don't care about}
+  \end{enumerate}
+\end{df}
+
+\begin{exa}
+  \(\R^n, \R\P^n, \mathbb{S}^n = \opn \vec{x} \in \R^{n+1} \stbar |\vec{x} | = 1 \cls\), donuts.
+\end{exa}
+
+
+\begin{exa}
+  \begin{align*}
+    \R\P^1 &= \opn (x, y) \stbar (x, y) \neq 0 \cls / \sim \text{ scaling} \\
+    D(x) &= \opn [x, y] \stbar x \neq 0 \cls \xrightarrow{\sim} \R^1 \\
+           & [x:y] \longmapsto \frac{y}{x} \\
+    D(y) &= \opn [x:y] \stbar y \neq 0 \cls \xrightarrow{\sim} \R^1 \\
+           & [x:y] \longmapsto \frac{x}{y}
+  \end{align*}
+  \kmd{FINISH THIS}.
+\end{exa}
+
+we now give the gluing construction:
+
+\begin{itemize}
+\item [Input:] Two top spaces \(U_1\), \(U_2\) \\
+  An open subset \(U_{12}\) of \(U_1\)\\
+  An open subset \(U_{21}\) of \(U_2\)\\
+  A homeomorphism \(\phi_{12}: U_{12} \to U_{21}\)
+\item [Output:] \(X = U_1 \sqcup U_2 / \sim = \opn 1 \cls \times U_1 \cup \opn 2 \cls \times U_2 / \sim \) Where \((1, u) \sim (2, \phi_{12}(u))\) when \(u \in U_{12}\).
+\end{itemize}
+
+\begin{thm}
+  X has an open cover \(V_1, V_2\) such that there exists homeomorphisms
+
+  \begin{enumerate}
+  \item
+    \(\begin{matrix}
+      \phi_1: U_1 \to V_1 \\
+      \phi_2: U_2 \to V_2
+    \end{matrix}\)
+  \item\(\phi_1(U_{12}) = \phi_2(U_{21})\)
+  \item \(\phi\1_2 \circ \phi_1 : U_{12} \to U_{21}\) is equal to \(\phi_{12}\)
+  \end{enumerate}
+\end{thm}
+
+\begin{exa}
+  \begin{align*}
+    \begin{matrix}
+      U_1 = \R & U_{12} = \R - \opn 0 \cls \\
+      U_2 = \R & U_{21} = \R - \opn 0 \cls
+    \end{matrix}
+  \end{align*}
+
+  \begin{align*}
+    \begin{matrix}
+      \phi:&U_{12} \to U_{21} \\
+           &x \mapsto \frac{1}{x}
+    \end{matrix}
+  \end{align*}
+
+  This glues to \(\R\P^1\) 
+\end{exa}
+
+\begin{exa}
+  Now take the same \(U\)'s but instead say \(x \xmapsto{\phi} x\). Then you get a cylinder
+\end{exa}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
