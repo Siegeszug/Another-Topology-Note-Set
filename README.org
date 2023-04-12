@@ -29,6 +29,7 @@ The TeX was done in Emacs with some very strange keybinds, so good luck trying t
 | Apr   | 23.04.04 | The Quotient Topology                               |
 |       | 23.04.07 | More about the Quotient Topology                    |
 |       | 23.04.11 | Quotients, Gluing, and Manifolds                    |
+|       | 23.04.12 | Connectedness                                       |
 
 
 

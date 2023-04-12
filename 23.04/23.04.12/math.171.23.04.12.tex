@@ -1,0 +1,103 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{\today}\hrule
+\vspace{.2in}
+
+We begin with a quick reminder that, along \(\mathbb{S}^1\), the open sets are open sets in \(\R^2\) which are intersected with the circle, and likewise that half-open intervals at the endpoints of \([0, 1]\) are also open.
+
+Now moving on to connectedness.
+
+
+\begin{df}
+  Let \(X\) be a topological space. A \textbf{separation} of \(X\) is a pair \(U, V\) of disjoint, nonempty, open subsets of \(X\) whose union is all of \(X\). We say that \(X\) is \textbf{connected} if \(X\) does not have a separation.
+\end{df}
+
+
+\begin{rmk}
+  \begin{itemize}
+  \item The definition of connected is homeomorphism invariant
+  \item If \(U, V\) is a separation of \(X\), then \(U^c = V\) and \(V^c = U\) are open, so \(U\) and \(V\) are both open and closed.
+  \item \(X\) is connected iff the only subsets of \(X\) that are both open and closed are \(\emptyset\) and \(X\) itself. (To see this, simply take a complement of a nontrivial clopen set. What do you get?)
+  \end{itemize}
+\end{rmk}
+
+\begin{exa}
+  \begin{itemize}
+  \item Consider \(X = \opn 1, 2 \cls\) with the indiscrete topology. This is clearly connected.
+  \item Let \(X = [-1, 0) \cup (0, 1]\) w/ subspace topology. This is disconnected, since both \([-1, 0)\) and \((0,1]\) are disjoint open sets\footnote{Remember, this is in the subspace topology on \(\R\)} which union to the entire space.
+  \item Let \(X = [-1, 1]\). This is connected, but that's kind of a truck to prove.
+  \item Let \(X = \Q\). The only subspaces of \(\Q\) which are connected are the singleton sets. If \(Y\) is any subspace of \(\Q\) containing \(p < q\), then there is an irrational number \(a\) between \(p\) and \(q\). Then \(U = (-\infty, a) \cap Y\), \(V = (a, \infty) \cap Y\) is a separation of \(Y\).
+  \end{itemize}
+\end{exa}
+
+\begin{thm}
+  Let \(X\) be a connected topological space, \(f: X \to Y\) a continuous function. Then \(f(X)\) is connected (w.r.t. the subspace topology)
+\end{thm}
+\begin{proof}
+  Let \(Z = f(X)\), and notice that \(
+  \begin{matrix}
+    g: X \to Z \\ x \mapsto f(x)
+  \end{matrix}
+  \) is also continuous.
+
+  So suppose for the sake of contradiction that there exists a separation \(U, V\) of \(Z\). Then we claim that \(U\prime = g\1(U)\), \(V\prime = g\1(V)\) is a separation of \(X\).
+  \begin{itemize}
+  \item \textit{(disjoint):} \(U\prime \cap V\prime = g\1(U) \cap g\1(V) = g\1(U \cap V) = g\1(\emptyset) = \emptyset\)
+  \item \textit{(nonempty):} \(U\prime, V\prime \neq \emptyset\) since \(g\) is surjective.
+  \item \textit{(open):} Follows trivially since \(g\) is continuous.
+  \item \textit{(Union is \(X\)):} \(U\prime \cup V\prime = g\1(U) \cup g\1(V) = g\1(U \cup V) = g\1(Z) = X\).
+  \end{itemize}
+
+  But then we've given a separation of \(X\), which is connected. A contradiction! So we must have that \(f(x) = Z\) is connected.
+\end{proof}
+
+Now we'll prove a sequence of lemmas, with the goal of proving that product spaces are connected.
+
+\begin{lm}
+  Suppose that \(X\) is a topological space, and further suppose that \(A\) is a connected subspace. If \(U, V\) is a separation of \(X\), then \(A \subseteq U\) or \(A \subseteq V\).
+\end{lm}
+\begin{proof}
+  Consider \(U\prime = U \cap A\) and \(V\prime = V \cap A\). Then \(U\prime\) and \(V\prime\) are disjoint, open in \(A\) and \(U\prime \cup V\prime = A\).
+
+  Since \(A\) is connected, it must be so that \(U\prime\) or \(V\prime\) is empty, otherwise we would have a separation.
+
+  If \(U\prime = \emptyset\), \(A \subseteq V\), and if \(V\prime = \emptyset\), then \(A \subseteq U\).
+\end{proof}
+
+\begin{thm}
+  If \(\opn A_i \cls_{i \in I}\) is a collection of connected subspaces of a topological space \(X\) and \(\bigcap_{i \in I} A_i \neq \emptyset\), then \(\bigcup_{i \in I} A_i\) (with the subspace topology) is connected.
+\end{thm}
+\begin{proof}
+  Suppose -- again for the sake of contradiction -- that \(U, V\) is a separation of \(\bigcup_{i \in I} A_i\).
+
+  Let \(p \in \bigcup_{i \in I} A_i\). Suppose without loss of generality that \(p \in U\).
+
+  Consider \(A_i\) for some \(i \in I\). Then by the lemma, \(A_i \subseteq U\) or \(A_i \subseteq V\). Since \(p \in A_i\) and \(p \in U\), it must follow that \(A_i \subseteq U\). Since this is true for all \(i\), \(\bigcup_{i \in I} A_i \subseteq U\). But then \(V = \bigcup_{i \in I} A_i - U = \emptyset\), again a contradiction.
+
+  So \(\bigcup_{i \in I} A_i\) must be connected.
+\end{proof}
+
+\begin{thm}
+  Let \(X, Y\) be connected topological spaces. Then \(X \times Y\) is connected as well.
+\end{thm}
+
+\begin{proof}
+  First, notice that if \(X, Y = \emptyset\), then \(X \times Y = \emptyset\) is connected.
+
+  So let's suppose that \(X\) and \(Y\) are not empty. Then \(\exists (a, b) \in X \times Y\).
+
+  Notice: \(X \times \opn b \cls \cong X\) is connected. Likewise, for any \(x \in X\), \(\opn x \cls \times Y \cong Y\) is connected.
+
+  Thus by the lemma, \(T_x = ( X \times \opn b \cls) \cup (\opn x \cls \times Y)\) is connected.
+
+  Then \(\bigcup_{x \in X} T_x = X \times Y\) and \((a, b) \in \bigcup_{x \in X} T_x\). So again by the lemma, \(X \times Y\) is connected.
+\end{proof}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
