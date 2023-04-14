@@ -68,7 +68,7 @@
 \end{thm}
 
 \begin{proof}
-  Since \(X\) is connected and \(f\) is continuous, \(f(X)\) is connected. By the previous theorem, \(f(X)\) is convex, so \(y \in f(X)\). THen by the definition of the image, \(\exists c \in X\) such that \(f(c) = y\).
+  Since \(X\) is connected and \(f\) is continuous, \(f(X)\) is connected. By the previous theorem, \(f(X)\) is convex, so \(y \in f(X)\). Then by the definition of the image, \(\exists c \in X\) such that \(f(c) = y\).
 \end{proof}
 
 Now we will give yet another characterization of continuity. One that is perhaps a bit stronger than our prior ones, but should aide our intuition.
@@ -77,12 +77,6 @@ Now we will give yet another characterization of continuity. One that is perhaps
   Let \(X\) be a topological space, \(p, q \in X\). A \textbf{path} from \(p\) to \(q\) in \(X\) is a continuous function \(f:[a,b] \to X\) such that \(f(a) = p\), \(f(b) = q\).
 
   We say that \(X\) is \textbf{path connected} if for any \(p,q\in X\) there is a path in \(X\) from \(p\) to \(q\).
-
-  \begin{center}
-    \begin{tikzpicture}
-      \draw[{Circle}-{Circle}] (-1,0) -- (1,0);
-    \end{tikzpicture}
-  \end{center}
 \end{df}
 
 
@@ -105,8 +99,17 @@ Now we will give yet another characterization of continuity. One that is perhaps
   \end{matrix}\) will be a path from \(\vec{p}\) to \(\vec{q}\).
 \end{exa}
 
-\begin{exa}[Connected \(\not\Rightarrow\) Path connected]
+\begin{exa}[Connected \(\not\Rightarrow\) Path connected]\hspace{1em}
 
+  \begin{center}
+    \begin{tikzpicture}[x=5cm, y=1.5cm]
+      \draw[help lines] (0,-1.1) grid (1.1, 1.1);
+      \draw[thick,red] (0,-1.1) -- (0,1.1);
+      \node at (0,1.4) {\(\sin\left(\frac{1}{x}\right)\)};
+      \draw[thick, ->] (0,0) -- (1.1,0) node[pos = 1, label=right:\(x\)] {};
+      \draw[domain=.01:1, samples=5000, blue] plot (\x, {sin((1/\x)r)});
+    \end{tikzpicture}
+  \end{center}
   Let \(S = \opn (t, \sin\left(\frac{1}{t}\right) \stbar 0 < t \leq 1) \cls.\)
 
   This is connected, since it is the image of a connected space. Take the closure:
@@ -122,11 +125,11 @@ Now we will give yet another characterization of continuity. One that is perhaps
 
 Let \(\vec{p} = (0, 0)\), \(q = (1, \sin(1))\).
 
-USppose \(f: [0,1] \to \overline{S}\) is a path from \(\vec{p}\) to \(\vec{q}\).
+Suppose \(f: [0,1] \to \overline{S}\) is a path from \(\vec{p}\) to \(\vec{q}\).
 
 notice \(0 \times [-1, 1]\) is a closed set, so its preimage under \(f\) is a closed set, with some max.
 
-Reparametrizing, we may assume this max is \(0\).
+Reparameterizing, we may assume this max is \(0\).
 
 By the intermediate value theorem, for each integer \(n > 0\), there is some \(t_n\) such that \(f(t_n) = \left(\frac{1}{2\pi n + \frac{\pi}{2}}. \sin\left(2\pi n + \frac{\pi}{2}\right)\right) = \left(\frac{1}{2\pi}, 1\right) \).
 
