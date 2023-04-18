@@ -31,6 +31,8 @@ The TeX was done in Emacs with some very strange keybinds, so good luck trying t
 |       | 23.04.11 | Quotients, Gluing, and Manifolds                    |
 |       | 23.04.12 | Connectedness                                       |
 |       | 23.04.14 | Convexity, Connectedness, and Path Connectedness    |
+|       | 23.04.18 | Connected Components, Open Covers, and Subcovers    |
+
 
 
 
