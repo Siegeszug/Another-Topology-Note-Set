@@ -3,3 +3,4 @@
 *.out
 _region_.tex
 */auto/
+*.el
