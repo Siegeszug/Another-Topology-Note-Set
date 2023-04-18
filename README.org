@@ -7,7 +7,7 @@ I probably forgot to spell-check most of these documents, and some of them are l
 
 This repo includes LaTeX files, including my personal header file used to typeset these notes. If you have any questions about this header file, I probably can't answer them even though I wrote the damn thing, but I'll sure give it a try. 
 
-The TeX was done in Emacs with some very strange keybinds, so good luck trying to replicate live TeXing notes using this header.
+The TeX was done in Emacs with auctex and latex-preview-pane, and a very very strange header. While my header might be good for sourcing some useful packages and keystroke-saving user defined functions, I highly recommend developing your own LaTeX header over time so that you can really get a sense of how LaTeX works.
 
 ** List of Topics
 
