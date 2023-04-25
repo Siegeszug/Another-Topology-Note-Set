@@ -1,0 +1,109 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{April 25, 2023}\hrule
+\vspace{.2in}
+
+\begin{framed}
+  The final will be take home, posted on Gradescope Thursday, May 11th.
+
+  There will be a 24 hour window. The exam will be open notes, open book, closed other people, closed internet.
+
+  \(\frac{1}{3}\) should be pre-midterm content, the remainder being new.
+
+  
+\end{framed}
+\begin{df}
+  A topological space \(X\) is \textbf{compact} if each open cover of \(X\) admits a finite subcover.
+\end{df}
+
+\begin{thm}
+  A closed subspace of a compact space is compact.
+\end{thm}
+\begin{proof}
+  Let \(X\) be a compact topological space, and let \(Z \subseteq X\) be a closed subspace. Recall that \(Z\) is compact iff every collection of open sets \(\opn U_i \cls\) in \(X\) with union containing \(Z\) has a finite subcollection with the same property.
+
+  Let \(\opn U_i \cls_{i \in I}\) be a collection of open subsets of \(X\) such that \(\bigcup_{i \in I} U_i \supseteq Z\). Notice now that since \(Z\) is closed, \(\opn U_i \cls_{i \in I} \cup \opn X - Z \cls\)  is an open cover of \(X\). Since \(X\) is compact, there exists \(i_1, \ldots, i_n\) such that \(\bigcup_{j = 1}^n U_{i_j} \cup (X - Z) = X\).
+
+  Then \(\bigcup_{j = 1}^n U_{i_j} \supseteq Z\), and thus \(Z\) is compact.
+\end{proof}
+
+\begin{thm}
+  Let \(X\) be a Hausdorff space, and let \(Z \subseteq X\) be a compact subspace. Then \(Z\) is closed inside of \(X\). 
+\end{thm}
+\begin{proof}
+  Let \(X\) be a Hausdorff space, \(Z\) a compact subspace. We want to show that \(Z \supseteq \overline{Z}\). (Then \(Z = \overline{Z}\), so \(Z\) is closed).
+
+  We'll show if \(y \in X - Z\), then \(y \not\in \overline{Z}\).
+
+  Let \(y \in X - Z\). Then for each point \(x \in Z\), we can find disjoint open neighborhoods \(U_x\) of \(x\) and \(V_x\) of \(y\). Observe \(\opn U_x \cls_{x \in X}\) are a collection of open sets whose union contains \(Z\). Since \(Z\) is compact, there exists some finite subcover: there are \(x_1, \ldots, x_n\) such that \(U_{x_1} \cup \ldots \cup U_{x_n} \supseteq Z\). Then observe that \(V_{x_1} \cap \ldots \cap V_{x_n}\) is an open neighborhood of \(y\) disjoint from \(U_{x_1} \cup \ldots \cup U_{x_n}\).
+
+  This implies \(\left( V_{x_1} \cap \ldots \cap V_{x_n}\right) \cap Z = \emptyset\). Thus \(y \not\in \overline{Z}\). Then \(Z\) is closed, as desired.
+\end{proof}
+
+\begin{exa}
+  \((0,1]\) is not compact. A quick way to show this is to note \((0,1]\) is not a closed subspace of \(\R\).
+\end{exa}
+
+\begin{thm}
+  Let \(f: X \to Y\) be a continuous function. If \(Z\) is a compact subspace of \(X\), then \(f(Z)\) is a compact subspace of \(Y\).
+\end{thm}
+\begin{proof}
+  We can assume \(X = Z\).
+
+  Then we want to show \(f(X)\) is compact. Let \(\opn U_i \cls_{i \in I}\) be a collection of open subsets of \(Y\) with \(\bigcup_{i \in I} U_i \supseteq f(X)\).
+
+  Taking pre-images, \(\opn f\1(U_i) \cls_{i \in I}\) is a collection of open subsets of \(X\) with union.
+
+  \begin{align*}
+    \bigcup_{i \in I} f\1(U_i) = f\1\left(\bigcup_{i \in I} U_i\right) \supseteq f\1(f(X)) = X.
+  \end{align*}
+
+  Since \(X\) is compact, there are indices \(i_1, \ldots, i_n\) such that \(\bigcup_{j = 1}^n f\1(U_{i_j}) = X\). Then we claim \(\bigcup_{j = 1}^n U_{i_j} \supseteq f(X)\).
+
+  Suppose for the sake of contradiction that there's some \(x \in X\) such that \(f(x) \not\in U_{i_j}\) for all \(j = 1, \ldots, n\). But this implies \(x \not\in f\1(U_{i_j})\) for all \(j = 1, \ldots, n\) \nope
+\end{proof}
+
+\begin{cor}
+  If \(f:X \to Y\) is a continuous function from a compact space to a Hausdorff space, then \(f\) is a closed map.
+\end{cor}
+
+\begin{proof}
+  Suppose \(Z \subseteq X\) is closed. Then \(Z\) is compact. Then \(f(Z)\) is compact. Then \(f(Z)\) is closed.
+\end{proof}
+\begin{cor}
+  If \(f:X \to Y\) is bijective continuous function from a compact space to a Hausdorff space, then \(f\) is a homeomorphism.
+\end{cor}
+
+\begin{exa}
+  Let \(X = S^1\). consider \(\sim\), \(\vec{X} \sim \pm \vec{x}\)
+
+  \begin{center}
+    \begin{tikzcd}
+      S^1 \arrow[dr, "g"]& \\
+      S^1/\opn \pm \cls \arrow[leftarrow, "p", u] & S^1 \arrow[dashleftarrow, l]
+    \end{tikzcd}
+  \end{center}
+
+  So by corollary \(S^1/\opn \pm \cls \cong S^1\).
+\end{exa}
+\begin{framed}
+  ``Compact + Hausdorff = Super closed''.
+
+  If \(i: X \hookrightarrow X\) is the inclusion of a compact subspace to be a Hausdorff space, then \(Z\prime \subseteq Z\) is closed iff \(i(Z\prime)\) in \(X\) is closed.
+\end{framed}
+\begin{thm}
+  If \(X\) and \(Y\) are compact subspaces, then \(X \times Y\) is also compact.
+\end{thm}
+
+\begin{lm}[Tube Lemma]
+  If \(X\) is a topological space and \(Y\) is a compact space and \(Y\) is a compact space. \(x_0 \in X\) and \(Y \subseteq X \times Y\) is an open subset containing \(X_0 \times Y\), then there is an open neighborhood \(W\) of \(x_0\) such that \(W \times Y \subseteq N\).
+\end{lm}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
