@@ -33,6 +33,7 @@ The TeX was done in Emacs with auctex and latex-preview-pane, and a very very st
 |       | 23.04.14 | Convexity, Connectedness, and Path Connectedness    |
 |       | 23.04.18 | Connected Components, Open Covers, and Subcovers    |
 |       | 23.04.25 | Compactness and Hausdorff-ness                      |
+|       | 23.04.26 | The Tube Lemma and Compact subsets in R             |
 
 
 

@@ -1,0 +1,83 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{April 26, 2023}\hrule
+\vspace{.2in}
+We will pick up with the tube lemma that we left unproven at the end of the last class.
+\begin{lm}[Tube Lemma]
+  If \(X\) is a topological space and \(Y\) is a compact space and \(Y\) is a compact space. \(x_0 \in X\) and \(Y \subseteq X \times Y\) is an open subset containing \(x_0 \times Y\), then there is an open neighborhood \(W\) of \(x_0\) such that \(W \times Y \subseteq N\).
+\end{lm}
+\begin{proof}
+  For each point \((x_0, y) \in x_0 \times Y \subseteq N\). choose a basic open subset \(U_y \times V_y\) where \(U_y \subseteq X\) is open, \(V_y \subseteq Y\) open, and \((x_0, y) \in U_y \times V_y \subseteq N\). Then \(\opn U_y \times V_y \cls_{y \in Y}\) is an open covering of \(x_0 \times Y\). But \(x_0 \times Y \cong Y\), so \(x_0 \times Y\) is compact, so there exists a \(y_1, \ldots, y_n \in Y\) such that \(Y \subseteq (U_{y_1} \times V_{y_1})\cup \ldots \cup (U_{y_n} \times V_{y_n})\). Let \(W = U_{y_1} \cap \ldots \cap U_{y_n}\). Then this is an open neighborhood of \(x_0 \in X\). Moreover,
+
+  \begin{align*}
+    W \times Y &= W \times \left(\bigcup_{i=1}^nV_{y_n}\right) \\
+               &=\bigcup_{i = 1}^n (W \times V_{y_n}) \\
+               &\subseteq \bigcup_{i = 1}^n ( U_{y_i} \times V_{y_i}) \subseteq N
+  \end{align*}
+\end{proof}
+
+\begin{thm}
+  If \(X\) and \(Y\) are compact topological spaces, then so is \(X \times Y\).
+\end{thm}
+
+\begin{proof}
+  Let \(\opn A \cls_{i \in I}\) be an open cover of \(X \times Y\). Then, as in the proof of the tube lemma, \(x_0 \times Y\) is compact, so finitely many of the \(A_i\)s cover \(x_0 \times Y\). Say \(A_{i_1} \cup \ldots \cup A_{i_n} \supseteq x_0 \times Y\). Let \(N = A_{i_1} \cup \ldots \cup A_{i_m}\).
+
+  Now by the tube lemma, there is an open neighborhood \(W_{x_0}\) of \(x_0\) in \(X\) such that \(W_{x_0} \times Y\subseteq N = A_{i_1} \cup \ldots\cup A_{i_n}\)
+
+  Observe that  \(\opn W_x \cls_{x \in X}\) is an open cover of \(X\). Since \(X\) is compact, there exists \(x_1, \ldots, x_n\) such that \(W_{x_1} \cup \ldots \cup W_{x_n} = X\) then \((W_{x_1} \times Y) \cup (W_{x_2} \times Y) \cup \ldots \cup (W_{x_n} \times Y) = X \times Y\).
+
+  Since there are finitely many \(W_{x_i}\)s, and each of the \(W_{x_i} \times Y\) admits a cover by finitely many elements of \(\opn A_i \cls_{i \in I}\), \(X \times Y\) also admits a finite cover by \(A_i\)s. Therefore \(X \times Y\) is compact.
+\end{proof}
+
+Now moving on to a discussion of compact subspaces of \(\R^n\).
+
+We begin with the long-alluded to proof that closed intervals are compact.
+\begin{thm}
+  A finite closed interval \([a, b] \subseteq \R\) is compact
+\end{thm}
+\begin{proof}
+  Let \(\mathcal{U} = \opn U_i \cls_{i \in I}\) be an open cover \([a, b]\) in the subspace topology.
+
+  \begin{enumerate}
+  \item [\emph{Step 1:}] Our goal is to show that if \(x\) is a point of \([a, b)\) then there is \(y > x\) in \([a, b]\) such that the interval \([x, y]\) is covered by just one element of \(\mathcal{U}\).
+
+    Let \(x \in [a, b)\). Since \(\mathcal{U}\) is a cover, there is an element \(U \in \mathcal{U}\) such that \(x \in U\). Since \(U\) is open and \(x \neq b\), there is some \(c\) in \((x, b)\) such that \([x, c) \subseteq U\). Chose \(y \in (x, c)\). Then \([x, y] \subseteq U\) \partdone
+  \item [\emph{Step 2:}] Let \(C\) be the set of all points \(y > a\) of \([a, b]\) such that the interval \([a, y]\) can be covered by finitely many elements of \(\mathcal{U}\). 
+
+    Applying \emph{Step 1} to \(x = a\) we get that at least one \(y \in C\), so \(C\) is nonempty. \(C\) is bounded above by \(b\), so there exists a supremum \(c\) of \(C\) \partdone
+  \item [\emph{Step 3:}] We now want to show \(c \in C\).
+
+    Suppose not. Choose an element \(U \in \mathcal{U}\) containing \(c\). We know that \(c > a\), so there exists \(d \in [a, b]\) such that \((d, c] \subseteq U\). Choose an element \(z\) of \((d, c]\). We must have \(z \in C\) since \(c\) is least upper bound. \partdone
+
+    Then since \(z \in C\), the interval \([a, z]\) can be covered by finitely many elements of \(\mathcal{U}\), say \(U_1, \ldots, U_n\). But then \(U_1 \cup \ldots \cup U_n \cup U \supseteq [a, z] \cup [z, c] = [a, c]\). Then \(c \in C\) \nope, so \(c \in C\). \partdone
+  \item [\emph{Step 4:}] Now we show that \(c = b\).
+
+    Once again, suppose not. Then \(c < b\), so by \emph{Step 1}, there is a \(y \in (c, b]\) and \(U \in \mathcal{U}\) such that \([c, y] \subseteq U\). By definition of \(C\), since \(c \in C\) there is a finite collection of elements of \(\mathcal{U}\), say \(U_1, \ldots, U_n\) covering \([a, c]\). Then \[U_1 \cup \ldots \cup U_n \cup U \supseteq [a, c] \cup [c, y] = [a, y].\]
+
+    But then \(y > c\) and \(y \in C\), which contradicts that \(c\) is an upper bound on \(C\) \nope. \partdone
+  \end{enumerate}
+
+  Therefore \([a, b]\) is compact.
+\end{proof}
+
+\begin{df}
+  A subset \(A \subseteq \R^n\) is said to be \textbf{bounded} if there is a radius \(r\) such that \(A \subseteq B(\vec{0}, r)\). (where \(B(\vec{x}, r)\) is a ball centered at \(\vec{x}\) with radius \(r\)). 
+\end{df}
+
+\begin{fact}
+  \(A\) is bounded iff there exists \(b \in \R\) such that \(A \subseteq [-b, b]^n\). 
+\end{fact}
+
+\begin{thm}[Extreme Value Theorem]
+  Let \(X\) be a compact topological space and \(f: X \to \R\) be a continuous function. Then there are elements \(a, b \in X\) such that \(f(a) \leq f(x) \leq f(b)\) for all \(x \in X\). 
+\end{thm}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
