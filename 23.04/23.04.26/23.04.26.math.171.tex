@@ -8,7 +8,7 @@
 \vspace{.2in}
 We will pick up with the tube lemma that we left unproven at the end of the last class.
 \begin{lm}[Tube Lemma]
-  If \(X\) is a topological space and \(Y\) is a compact space and \(Y\) is a compact space. \(x_0 \in X\) and \(Y \subseteq X \times Y\) is an open subset containing \(x_0 \times Y\), then there is an open neighborhood \(W\) of \(x_0\) such that \(W \times Y \subseteq N\).
+  If \(X\) is a topological space and \(Y\) is a compact space. Let \(x_0 \in X\), and let \(N \subseteq X \times Y\) be an open subset containing \(x_0 \times Y\), then there is an open neighborhood \(W\) of \(x_0\) such that \(N\) contains the ``tube'' \(W \times Y\).
 \end{lm}
 \begin{proof}
   For each point \((x_0, y) \in x_0 \times Y \subseteq N\). choose a basic open subset \(U_y \times V_y\) where \(U_y \subseteq X\) is open, \(V_y \subseteq Y\) open, and \((x_0, y) \in U_y \times V_y \subseteq N\). Then \(\opn U_y \times V_y \cls_{y \in Y}\) is an open covering of \(x_0 \times Y\). But \(x_0 \times Y \cong Y\), so \(x_0 \times Y\) is compact, so there exists a \(y_1, \ldots, y_n \in Y\) such that \(Y \subseteq (U_{y_1} \times V_{y_1})\cup \ldots \cup (U_{y_n} \times V_{y_n})\). Let \(W = U_{y_1} \cap \ldots \cap U_{y_n}\). Then this is an open neighborhood of \(x_0 \in X\). Moreover,
