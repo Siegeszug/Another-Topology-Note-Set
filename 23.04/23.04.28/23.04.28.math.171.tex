@@ -1,0 +1,123 @@
+\documentclass[12pt, twosided]{article}
+\input{sdpreamble}
+\graphicspath{{./img/}}
+
+\begin{document}
+\noindent \textbf{Math 171} \hfill \textbf{Professor Sebastian Bozlee} \\
+\textbf{Scribed by: Kyle Dituro} \hfill \textbf{April 28, 2023}\hrule
+\vspace{.2in}
+
+\begin{exr}
+  Let \(\tau\) and \(\tau\prime\) be two topologies on \(X\). Suppose \(\tau\prime\) is finer than \(\tau\). What does compactness under one of these imply about compactness in the other?
+\end{exr}
+
+Compactness in \(\tau\prime\) implies compactness of \(\tau\), and not the other way around.
+
+\begin{proof}
+  Suppose \((X, \tau\prime)\) is compact. Want to show that \((X, \tau)\) is compact as well. Let \(\opn U_i \cls_{i \in I}\) be an open cover of \((X, \tau)\). Then \(U_i \in \tau\) for all \(i\), and moreover \(\bigcup_{i \in I} U_i = X\). Then \(U_i \in \tau\prime\) for all \(i \in I\), so the \(U_i\) are an open cover of \((X, \tau\prime)\), which is a compact space, so there is a finite subcover.
+\end{proof}
+
+Remember that if \(X, Y\) are compact, then \(X \times Y\) is compact, and that \([a,b]\) is compact. It follows by induction that \([a_1, b_1] \times \ldots \times [a_n, b_n]\) is compact.
+
+\begin{df}
+  If \(A \subseteq \R^n\), we say that \(A\) is \textbf{bounded} if there exists \(r \in (0, \infty)\) such that \(A \subsetneq B(\vec{0}, r)\).
+\end{df}
+
+\begin{thm}
+  Let \(A\)be a subspace of \(\R^n\). Then \(A\) is compact if and only if \(A\) s closed in \(\R^n\) and \(A\) is bounded.
+\end{thm}
+
+\begin{proof}
+  Suppose that \(A\) is compact. Since \(\R^n\) is Hausdorff and \(A\) is a compact subspace, \(A\) is closed. Consider the collection \(\opn B(\vec{0}, r) \cls_{r\in \R_{> 0}}\) of open balls in \(\R^n\) centered at the origin.
+
+  We have \(\bigcup_{r \in \R} B(\vec{0}, r) = \R^n \supseteq A\). Since \(A\) is compact there exists \(r_1, \ldots r_n\) such that
+
+  \begin{align*}
+    A &\subseteq \bigcup_{i = 1}^n B(\vec{0}, r_i) \\
+      &\subseteq B(0, \mathrm{max}\opn r_1, \ldots r_n\cls).
+  \end{align*}
+  So \(A\) is bounded. \partdone
+
+
+Conversely suppose that \(A\)is closed and bounded. Then there exists \(r > 0 \) such that
+
+\begin{align*}
+  A &\subseteq B(0, r) \\
+    &\subseteq [-r, r]^n
+\end{align*}
+
+Now \([-r, r]^n\) is compact and \(A\) is a closed subset of \([-r, r]^n\), so \(A\) is compact.
+\end{proof}
+\begin{exa}
+  \(S^n\) is closed and bounded in \(\R^{n + 1}\), so \(S^n\) is compact.
+
+  \(S^n/\opn \pm \cls = \R\P^n\) is a continuous image of \(S^n\) under the quotient map, so \(\R\P^n\) is compact.
+\end{exa}
+
+\begin{thm}[Extreme Value Theorem]
+  Let \(X\) be a nonempty compact topological space, \(f: X \to \R\) be a continuous function. Then \(f\) has a max and a min: There exist \(a, b \in X\) such that for all \(x \in X\), \(f(a) \leq f(x) \leq f(b)\).
+\end{thm}
+
+\begin{proof}
+  Since images of compact subspaces are compact, \(f(X)\) is compact as well. By the previous theorem \(f(X)\) is closed and bounded in \(\R\). Since \(f(X)\) is bounded and nonempty, it has a supremum \(d\). Let \(\epsilon >0\) be given. Then \((d - \epsilon, d + \epsilon)\) intersects \(X\) since otherwise \(d - \frac{\epsilon}{2}\) would be a lower upper bound on \(f(x)\) than \(d\). Then \(d \in \overline{f(X)} = f(X)\). 
+
+  Since \(d \in f(X)\), there exists \(b \in X\) such that \(f(b) = d\). Then we have for all \(x \in X\), \(f(x) \leq f(b) = d\). \partdone
+
+  The process to find a minimum \(a\) should be basically identical.
+\end{proof}
+
+Historically, it is very difficult to determine that two spaces are not homeomorphic. The easiest way to do this is to identify topological invariants which differ between two spaces.
+
+With the tools that we have now, it is stil quite difficult to even identify that the circle and the closed unit interval are not homeomorphic.
+
+So let's look at more topological invariants which can help with this.
+
+\begin{df}
+  Let \(X\) be a topological space, \(x_0 \in X\) a point.
+
+  A \textbf{loop} in \(X\) (based at \(x_0\)) is a continuous function \(f:[0,1]  \to X\) such that \(f(0) = f(1) = x\).
+\end{df}
+
+\begin{df}
+  Two loops \(f,g: [0,1] \to X\) are \textbf{homotopic} is there exists a continuous function \(H: [0,1] \times [0,1] \to X\) such that
+
+  \begin{enumerate}
+  \item \(H(x, 0) = f(x)\) for all \(x \in [0, 1]\)
+  \item \(H(x, 1) = g(x)\) for all \(x \in [0, 1]\)
+  \item \(H(0, t) = H(1, t)= x_0\) for all \(t \in [0,1]\).
+  \end{enumerate}
+\end{df}
+
+Write \(f \sim g\) if \(f\) and \(g\) are homotopic, and \([f]\) for the equivalence class of \(f\).
+
+\begin{df}
+  The \textbf{fundimental group} of \((X, x_0)\) is the set
+
+  \begin{align*}
+    \pi_1(X, x_0) := \opn [f] \stbar f:[0,1] \to X \text{ is a loop based at } x_0 \cls.
+  \end{align*}
+\end{df}
+
+\begin{exa}
+  \(\pi_1(S^1,\vec{0}) = \opn 0 \cls\). (similarly \(\pi_1(\R^n, 0) = \opn \vec{0} \cls\)).
+
+  \(\pi_1(S^1, (0, 1)) \cong \Z\). To see this, notice that the maximum genus of a loop (respecting orientation) are precisely the integers.
+
+  Likewise, taking the torus, its fundemental group at a point is a copy of \(\Z \times \Z\).
+\end{exa}
+\pagebreak
+Suppose \(f: X \to Y\) is continuous.
+
+\begin{center}
+  \begin{tikzcd}[]
+   [0,1] \arrow[dr, "f \circ a \text{ is a loop in } Y"] & \\
+    X \arrow[u, leftarrow, "a"] & Y \arrow[l, leftarrow, "f"]
+  \end{tikzcd}
+\end{center}
+
+In This we say continous functions \(f:X \to Y\) yield functions \(f^*: \pi_1(X, x_0) \to \pi_1(Y, f(x_0))\)
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
