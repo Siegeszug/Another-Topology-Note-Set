@@ -9,7 +9,7 @@ This repo includes LaTeX files, including my personal header file used to typese
 
 The TeX was done in Emacs with auctex and latex-preview-pane, and a very very strange header. While my header might be good for sourcing some useful packages and keystroke-saving user defined functions, I highly recommend developing your own LaTeX header over time such that you really get a sense of how LaTeX works.
 
-** Liost of Topics
+** List of Topics
 | Month |     Date | Topic                                                         |
 |-------+----------+---------------------------------------------------------------|
 | Feb   | 23.02.10 | Real Continuity                                               |
